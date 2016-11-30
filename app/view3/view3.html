@@ -1,0 +1,21 @@
+
+
+<form name="myForm" novalidate>
+	<h3> Example Form </h3>
+
+
+	<label>Name </label>
+	<input type="text" name="firstName" ng-model="firstName" validation-directive="firstName"/>	
+	<div validation-messages="firstName" form="myForm"></div>
+
+	<hr>
+
+	<label>Last Name</label>
+	<input type="text" name="lastName" ng-model="lastName" validation-directive="lastName"/>
+	<div validation-messages="lastName" form="myForm"></div>
+
+	<h1>First Name Valid - {{myForm.firstName.$error}}</h1>
+	<h1>Last Name Valid - {{myForm.lastName.$error}}</h1>
+	<button ng-disabled="myForm.$invalid" ng-click="submitForm()"> Submit Form </button>
+
+</form>
