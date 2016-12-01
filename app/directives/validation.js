@@ -35,7 +35,7 @@ appConfig.directive('validationDirective', [
     }],
     template:  '<div ng-if="form[validationMessages].$touched">' +
            '<div ng-repeat="(key,message) in messages">' +
-             '<p ng-if="form[validationMessages].$error[key]"> {{message}} </p>' +
+             '<p ng-if="form[validationMessages].$error[key]" class="errorShower text-center"> {{message}} </p>' +
              '</div>' +
              '</div>'
     };

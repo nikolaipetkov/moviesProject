@@ -1,14 +1,12 @@
 body                            { padding-top:20px; }
 
-/* form styling */
-#form-container                { background:#2f2f2f; margin-bottom:20px;
-    border-radius:5px; }
-#form-container .page-header   { background: green; margin:0; padding:30px; 
+
+#form-container .page-header   { background:#2f2f2f; color: white; margin:0; padding:30px; 
     border-top-left-radius:5px; border-top-right-radius:5px; }
 
 /* numbered buttons */
 #status-buttons                 {  }
-#status-buttons a               { color:#FFF; display:inline-block; font-size:12px; margin-right:10px; text-align:center; text-transform:uppercase; }
+#status-buttons a               { color:#FFF; display:inline-block; font-size:12px; margin-right:10px; text-align:center; text-transform:uppercase; /*pointer-events: none; */}
 #status-buttons a:hover         { text-decoration:none; }
 #status-buttons a:active         { text-decoration:none; }
 
@@ -18,3 +16,6 @@ body                            { padding-top:20px; }
 
 /* active buttons turn light green-blue*/
 #status-buttons a.active span   { background:#00BC8C; }
+
+#registerMessage 				{ background:#009900; color: white;}
+.errorShower					{ background:#FF9494; color: white; border-radius: 5px; margin-top: 2px;}

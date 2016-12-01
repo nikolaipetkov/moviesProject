@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="app.css">
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
   -->
+  <link rel="stylesheet" href="style.css">
   <script
   src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -36,7 +37,9 @@
 
 
 
-    <a ui-sref="form" ui-sref-active="active">Form</a> 
+    <a ui-sref="form.name" ui-sref-active="active">Register</a>
+    <a ui-sref="home" ui-sref-active="active">Home</a>
+    <a ui-sref="login" ui-sref-active="active">Login</a>
 
     <div ui-view></div>
 
@@ -61,13 +64,15 @@
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
   <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script> 
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script type="text/javascript" src="bower_components/angular-ui-validate/dist/validate.js"></script> 
   <!--<script src="bower_components/angular-route/angular-route.js"></script> -->
   <script src="app.js"></script>
   
   <!-- config include -->
  <script src="app.config.js"></script> 
-  
+ <script src="services/register.js"></script> 
 
   <!-- <script src="view1/view1.js"></script> -->
   <!-- <script src="view2/view2.js"></script> -->

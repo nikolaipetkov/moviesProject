@@ -1,0 +1,47 @@
+<!-- USERNAME  -->
+<div class="form-group">
+    <label for="userName"> Username </label>
+    <input type="text" class="form-control" name="userName" username-available ng-model="$parent.formData.userName" validation-directive="userName">
+    <div validation-messages="userName" form="forms.myForm"></div>
+</div>
+
+
+<!-- PASSWORD  -->
+<div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" name="password" ng-model="$parent.formData.password" validation-directive="password">
+    <div validation-messages="password" form="forms.myForm"></div>
+</div>
+
+
+<!-- CONFIRM PASSWORD  -->
+<div class="form-group">
+    <label for="confirmPassword"> Confirm Password</label>
+    <input type="password" class="form-control" name="confirmPassword" ng-model="$parent.formData.confirmPassword" ui-validate=" '$value==$parent.formData.password' "
+       ui-validate-watch=" '$parent.formData.password' " validation-directive="confirmPassword">
+    <div validation-messages="confirmPassword" form="forms.myForm"></div>
+</div>
+
+
+<!-- EMAIL  -->
+<div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" name="email" ng-model="$parent.formData.email" validation-directive="email">
+   	<div validation-messages="email" form="forms.myForm"></div>
+</div>
+
+
+
+<div class="form-group row">
+<div class="col-xs-6 col-xs-offset-3">
+
+<!-- BACK BUTTON  -->
+    <button ui-sref="form.name" class="btn btn-warning btn-xs"> Name Section <span class="glyphicon glyphicon-circle-arrow-left"></span></button>
+    <hr>
+
+<!-- NEXT BUTTON  -->
+    <button ng-disabled="forms.myForm.$invalid" ui-sref="form.city" class="btn btn-block btn-success"> Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span></button>
+
+
+</div>
+</div>
