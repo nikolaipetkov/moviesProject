@@ -1,9 +1,12 @@
 <div class="form-group">
+
+<!-- FIRST NAME -->
 	<label for="firstName"> First Name </label>
 	<input type="text" class="form-control" name="firstName" ng-model="$parent.formData.firstName" validation-directive="firstName"> 		
 	<div validation-messages="firstName" form="forms.myForm"></div>
 </div>
 
+<!-- LAST NAME -->
 <div class="form-group">
 	<label for="lastName"> Last Name </label>
 	<input type="text" class="form-control" name="lastName" ng-model="$parent.formData.lastName" validation-directive="lastName">

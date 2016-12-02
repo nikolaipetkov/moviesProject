@@ -17,5 +17,5 @@ body                            { padding-top:20px; }
 /* active buttons turn light green-blue*/
 #status-buttons a.active span   { background:#00BC8C; }
 
-#registerMessage 				{ background:#009900; color: white;}
+#registerMessage 				{ background:#A6D785; color: #4F8A10;}
 .errorShower					{ background:#FF9494; color: white; border-radius: 5px; margin-top: 2px;}

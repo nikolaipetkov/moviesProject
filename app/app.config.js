@@ -32,12 +32,14 @@ appConfig.constant("CONFIGURATIONS", {
     "rules": {
        'ng-minlength' : 3,
        'ng-maxlength': 8,
-       'required' : true
+       'required' : true,
+       'username-available' : 'username-available'
     },
     "messages" : {
       'minlength' : "error_too_short",
       'required' : "error_required",
-      'maxlength': "error_too_long"
+      'maxlength': "error_too_long",
+      'usernameExists': "error_username_exists_from_directive"
     }    
   },
     "email": {
@@ -78,5 +80,17 @@ appConfig.constant("CONFIGURATIONS", {
       "messages" : {
         'validator' : "passwords_do_not_match"
       }    
+  },
+  "userNamee": {
+    "rules": {
+       'ng-minlength' : 3,
+       'ng-maxlength': 8,
+       'required' : true,
+    },
+    "messages" : {
+      'minlength' : "error_too_short",
+      'required' : "error_required",
+      'maxlength': "error_too_long",
+    }    
   }  
 })

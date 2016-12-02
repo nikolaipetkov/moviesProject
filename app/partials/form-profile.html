@@ -1,9 +1,23 @@
-<!-- USERNAME  -->
+<!-- USERNAME DIRECTIVE  -->
 <div class="form-group">
-    <label for="userName"> Username </label>
-    <input type="text" class="form-control" name="userName" username-available ng-model="$parent.formData.userName" validation-directive="userName">
-    <div validation-messages="userName" form="forms.myForm"></div>
+    <label for="userName"> Username (Directive) </label>
+    <input type="text" class="form-control" name="userName"  ng-model="$parent.formData.userName" ng-model-options="{ updateOn: 'blur' }"  validation-directive="userName"   >
+   <!-- <div ng-if="forms.myForm.$pending">checking....</div>          ASK TEODOR WHY THIS IS SO FAST?-->
+    <div validation-messages="userName" form="forms.myForm"></div> 
 </div>
+
+
+
+
+
+<!-- USERNAME SERVICE  -->
+<div class="form-group">
+    <label for="userNamee"> Username (Service) </label>
+    <input type="text" class="form-control" name="userNamee"  ng-model="$parent.formData.userNamee" ng-model-options="{ updateOn: 'blur' }" is-unique validation-directive="userNamee">
+    <div ng-if="forms.myForm.userNamee.$error.unique && forms.myForm.userNamee.$touched" class="errorShower text-center" > error_already_exists_from_service</div>
+</div>
+
+
 
 
 <!-- PASSWORD  -->
@@ -26,8 +40,8 @@
 <!-- EMAIL  -->
 <div class="form-group">
     <label for="email">Email</label>
-    <input type="email" class="form-control" name="email" ng-model="$parent.formData.email" validation-directive="email">
-   	<div validation-messages="email" form="forms.myForm"></div>
+    <input type="email" class="form-control" name="email" ng-model="$parent.formData.email">
+    <div class="errorShower text-center" ng-if="forms.myForm.email.$error.email && forms.myForm.email.$touched"> not_a_valid_email </div>
 </div>
 
 
@@ -40,7 +54,7 @@
     <hr>
 
 <!-- NEXT BUTTON  -->
-    <button ng-disabled="forms.myForm.$invalid" ui-sref="form.city" class="btn btn-block btn-success"> Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span></button>
+    <button ng-disabled="forms.myForm.$invalid || forms.myForm.$pending" ui-sref="form.city" class="btn btn-block btn-success"> Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span></button>
 
 
 </div>

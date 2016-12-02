@@ -2,7 +2,8 @@ var myApp = angular.module('myApp', [
   'ui.router',
   'AppConfig',
   'registerService',
-  'ui.validate'
+  'ui.validate',
+  'mockUniqueService'
   ]);
 
 myApp.config(function($stateProvider, $locationProvider, $urlRouterProvider) {
@@ -62,19 +63,37 @@ myApp.controller('formController', function($scope, $state, register){
   $scope.formData = {};
   $scope.forms = {};
 
+  //Age Minimum Restriction
+  var today = new Date();
+  var minAge = 18;
+  $scope.minAge = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
+
+
+/* debugging purpose
   $scope.$watch('forms.myForm', function(form) {
   if(form) {
      console.log($scope.forms.myForm);
   }
 });
+*/
 
+//Used to redirect user
+$scope.go = $state.go.bind($state);
 
-  $scope.go = $state.go.bind($state);
+//show the register message flag
+$scope.shown = false;
 
-//showing registration message
+//getting the message from the service
   $scope.processForm = function() {
    register.get(function (data){
      $scope.message = data.message;
    });
     }
   });
+
+
+
+
+
+
+
