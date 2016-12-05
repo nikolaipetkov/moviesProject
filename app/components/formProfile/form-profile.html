@@ -7,23 +7,10 @@
 </div>
 
 
-
-
-
-<!-- USERNAME SERVICE  -->
-<div class="form-group">
-    <label for="userNamee"> Username (Service) </label>
-    <input type="text" class="form-control" name="userNamee"  ng-model="$parent.formData.userNamee" ng-model-options="{ updateOn: 'blur' }" is-unique validation-directive="userNamee">
-    <div ng-if="forms.myForm.userNamee.$error.unique && forms.myForm.userNamee.$touched" class="errorShower text-center" > error_already_exists_from_service</div>
-</div>
-
-
-
-
 <!-- PASSWORD  -->
 <div class="form-group">
     <label for="password">Password</label>
-    <input type="password" class="form-control" name="password" ng-model="$parent.formData.password" validation-directive="password">
+    <input type="password" class="form-control" name="password" id="password" ng-model="$parent.formData.password" validation-directive="password">
     <div validation-messages="password" form="forms.myForm"></div>
 </div>
 
@@ -40,7 +27,8 @@
 <!-- EMAIL  -->
 <div class="form-group">
     <label for="email">Email</label>
-    <input type="email" class="form-control" name="email" ng-model="$parent.formData.email">
+    <input type="text" class="form-control" name="email" ng-model="$parent.formData.email" validation-directive="email">
+    <div validation-messages="email" form="forms.myForm"></div>
     <div class="errorShower text-center" ng-if="forms.myForm.email.$error.email && forms.myForm.email.$touched"> not_a_valid_email </div>
 </div>
 

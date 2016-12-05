@@ -45,10 +45,12 @@ appConfig.constant("CONFIGURATIONS", {
     "email": {
       "rules": {
         'required' : true,
+        'ng-pattern': "/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"
       },
       "messages" : {
         'required' : "error_required",
-        'email': "not_valid_email"
+        'email': "not_valid_email",
+        'pattern': "not_a_valid_pattern"
       }    
   },
     "city": {
@@ -76,9 +78,12 @@ appConfig.constant("CONFIGURATIONS", {
       }    
   },
     "confirmPassword": {
-      "rules": {},
+      "rules": {
+        "match-password" : "password"
+      },
       "messages" : {
-        'validator' : "passwords_do_not_match"
+        //'validator' : "passwords_do_not_match",
+        'passmatch': "custom_match_error"
       }    
   },
   "userNamee": {

@@ -3,7 +3,9 @@ var myApp = angular.module('myApp', [
   'AppConfig',
   'registerService',
   'ui.validate',
-  'mockUniqueService'
+  'homeModule',
+  'loginModule',
+  'formModule'
   ]);
 
 myApp.config(function($stateProvider, $locationProvider, $urlRouterProvider) {
@@ -13,38 +15,40 @@ myApp.config(function($stateProvider, $locationProvider, $urlRouterProvider) {
   var home = {
   name: 'home',
   url: '/home',
-  template: '<div class="jumbotron text-center"> This is HOME </div>',
+  templateUrl: 'components/home/home.html',
+  controller: 'HomeController'
     }
 
   var login = {
   name: 'login',
   url: '/login',
-  template: '<div class="jumbotron text-center"> This is LOGIN </div>',
+  templateUrl: 'components/login/login.html',
+  controller: 'LoginController'
     }
 
   var form = {
     name: 'form',
     url: '/form',
-    templateUrl: 'partials/form.html',
-    controller: 'formController'
+    templateUrl: 'components/form/form.html',
+    controller: 'formController2'
   }
 
   var nameForm = {
     name: 'form.name',
     url: '/formName',
-    templateUrl: 'partials/form-name.html'
+    templateUrl: 'components/formName/form-name.html'
   }
 
   var profileForm = {
     name: 'form.profile',
     url: '/formProfile',
-    templateUrl: 'partials/form-profile.html'
+    templateUrl: 'components/formProfile/form-profile.html'
   }
 
   var cityForm = {
     name: 'form.city',
     url: '/formCity',
-    templateUrl: 'partials/form-city.html'
+    templateUrl: 'components/formCity/form-city.html'
   }
   
 
@@ -58,7 +62,7 @@ myApp.config(function($stateProvider, $locationProvider, $urlRouterProvider) {
   $stateProvider.state(cityForm);
 });
 
-
+/*
 myApp.controller('formController', function($scope, $state, register){
   $scope.formData = {};
   $scope.forms = {};
@@ -69,28 +73,27 @@ myApp.controller('formController', function($scope, $state, register){
   $scope.minAge = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
 
 
-/* debugging purpose
+//debugging purpose
   $scope.$watch('forms.myForm', function(form) {
   if(form) {
      console.log($scope.forms.myForm);
   }
 });
-*/
+
 
 //Used to redirect user
 $scope.go = $state.go.bind($state);
 
-//show the register message flag
-$scope.shown = false;
+
 
 //getting the message from the service
   $scope.processForm = function() {
-   register.get(function (data){
+   register.get().$promise.then(function (data){
      $scope.message = data.message;
    });
     }
   });
-
+*/
 
 
 

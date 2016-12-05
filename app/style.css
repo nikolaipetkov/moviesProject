@@ -6,7 +6,7 @@ body                            { padding-top:20px; }
 
 /* numbered buttons */
 #status-buttons                 {  }
-#status-buttons a               { color:#FFF; display:inline-block; font-size:12px; margin-right:10px; text-align:center; text-transform:uppercase; /*pointer-events: none; */}
+#status-buttons a               { color:#FFF; display:inline-block; font-size:12px; margin-right:10px; text-align:center; text-transform:uppercase; pointer-events: none;}
 #status-buttons a:hover         { text-decoration:none; }
 #status-buttons a:active         { text-decoration:none; }
 

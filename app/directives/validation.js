@@ -46,45 +46,29 @@ appConfig.directive('validationDirective', [
     require: 'ngModel',
     link: function(scope, elm, attr, model) { 
       model.$asyncValidators.usernameExists = function() { 
-        //here you should access the backend, to check if username exists
-        //and return a promise
-        // var defer = $q.defer();
-        // $timeout(function(){
-        //   model.$setValidity('usernameExists', true); 
-        //   defer.resolve;
-        // }, 1000);
-        // return defer.promise;
+        
         console.log(model);
         return $http.get('data/backend.json').then(function(res){+
           $timeout(function(){
             model.$setValidity('usernameExists', !!res.data); 
           }, 1500);
-        }); 
-        
-        
+        });         
       };
     }
   } 
-}).directive('isUnique',['userService', '$timeout', function(userService, $timeout){
-        return {
-           restrict: 'A',
-           require: 'ngModel',
-           link: function (scope, element, attrs, ngModel) {
-               scope.$watch(attrs.ngModel, function(value) {
-                   userService.isUnique(value)
-                              .then(function(data) {+
-                                $timeout(function(){
-                                   ngModel.$setValidity('unique', data);
-                                  }, 1000 );
-                              })
-                              .catch(function() {+
-                                $timeout(function(){
-                                   ngModel.$setValidity('unique', false);
-                                  }, 2000 );
-                              });
-               });
-           }
-      };
+}).directive('matchPassword', [function(){
+  return {
+    require: 'ngModel',
+    link: function(scope, elem, attr, ctrl){
+      var firstPassword = '#' + attr.matchPassword;
+      elem.add(firstPassword).on('keyup', function(){
+        scope.$apply(function(){
+          var v = elem.val()===$(firstPassword).val();
+          ctrl.$setValidity('passmatch', v);
+        });
+      });
+    }
+  }
 }]);
 
 
