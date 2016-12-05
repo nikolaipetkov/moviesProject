@@ -5,7 +5,8 @@ var myApp = angular.module('myApp', [
   'ui.validate',
   'homeModule',
   'loginModule',
-  'formModule'
+  'formModule',
+  'tabModule'
   ]);
 
 myApp.config(function($stateProvider, $locationProvider, $urlRouterProvider) {

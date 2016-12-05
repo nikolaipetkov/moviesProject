@@ -9,7 +9,7 @@ appConfig.directive('validationDirective', [
 
      link: function(scope, element, attr) {
         var config = CONFIGURATIONS[scope.validationDirective]['rules'];
-        console.log(config);
+        console.log();
 
        angular.forEach(config, function(key,value){
           element.attr(value,key);

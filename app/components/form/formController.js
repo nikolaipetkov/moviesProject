@@ -1,4 +1,4 @@
-angular.module('formModule', ['registerService']).controller('formController2', function($scope, $state, register){
+angular.module('formModule', ['registerService', 'AppConfig']).controller('formController2', function($scope, $state, register){
   $scope.formData = {};
   $scope.forms = {};
 

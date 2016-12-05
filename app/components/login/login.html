@@ -1,1 +1,155 @@
-<div class="jumbotron text-center"> Login {{greeting}} </div>
+
+  <form name="forms.myForm" ng-submit="processForm(forms.myForm.$valid)" novalidate="">
+  <!-- form.html 
+    <div ng-controller="formController2">
+    </div>-->
+<div class="row">
+<div class="col-sm-8 col-sm-offset-2">
+
+<div id="form-container">
+    <div class="page-header text-center">
+        <h2>Example Form</h2>
+        
+
+    </div>
+    
+    
+        <!-- our nested state views will be injected here
+        <div id="form-views" ui-view></div> -->
+        
+    
+</div>
+
+    <!-- show our formData as it is being typed -->
+    <pre>
+        {{ formData }}
+    </pre>
+
+
+</div>
+</div>
+    <tabs active="0">
+      <tab label="Tab 1" >     
+<div class="form-group">
+
+<!-- FIRST NAME -->
+
+	<label for="firstName"> First Name </label>
+	<input type="text" class="form-control" name="firstName" ng-model="$parent.formData.firstName" validation-directive="firstName"> 		
+	<div validation-messages="firstName" form="forms.myForm"></div>
+	<p ng-if="forms.myForm.firstName.$error.minlength"> required error</p>
+</div>
+
+<!-- LAST NAME -->
+<div class="form-group">
+	<label for="lastName"> Last Name </label>
+	<input type="text" class="form-control" name="lastName" ng-model="$parent.formData.lastName" validation-directive="lastName">
+	<div validation-messages="lastName" form="forms.myForm"></div>
+</div>
+
+<div class="form-group row">
+<div class="col-xs-6 col-xs-offset-3">
+	<button ng-disabled="forms.myForm.$invalid" ui-sref="form.profile" class="btn btn-block btn-success">
+	Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
+	</button>
+</div>
+</div>
+
+
+
+
+
+
+
+        <button ng-click="tabs.selectTab($last);"> Go To tab 2</button>
+       </tab>
+       <tab label="Tab 2" >
+<!-- USERNAME DIRECTIVE  -->
+<div class="form-group">
+    <label for="userName"> Username (Directive) </label>
+    <input type="text" class="form-control" name="userName"  ng-model="$parent.formData.userName" ng-model-options="{ updateOn: 'blur' }"  validation-directive="userName"   >
+   <!-- <div ng-if="forms.myForm.$pending">checking....</div>          ASK TEODOR WHY THIS IS SO FAST?-->
+    <div validation-messages="userName" form="forms.myForm"></div> 
+</div>
+
+
+<!-- PASSWORD  -->
+<div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" name="password" id="password" ng-model="$parent.formData.password" validation-directive="password">
+    <div validation-messages="password" form="forms.myForm"></div>
+</div>
+
+
+<!-- CONFIRM PASSWORD  -->
+<div class="form-group">
+    <label for="confirmPassword"> Confirm Password</label>
+    <input type="password" class="form-control" name="confirmPassword" ng-model="$parent.formData.confirmPassword" ui-validate=" '$value==$parent.formData.password' "
+       ui-validate-watch=" '$parent.formData.password' " validation-directive="confirmPassword">
+    <div validation-messages="confirmPassword" form="forms.myForm"></div>
+</div>
+
+
+<!-- EMAIL  -->
+<div class="form-group">
+    <label for="email">Email</label>
+    <input type="text" class="form-control" name="email" ng-model="$parent.formData.email" validation-directive="email">
+    <div validation-messages="email" form="forms.myForm"></div>
+    <div class="errorShower text-center" ng-if="forms.myForm.email.$error.email && forms.myForm.email.$touched"> not_a_valid_email </div>
+</div>
+
+
+
+<div class="form-group row">
+<div class="col-xs-6 col-xs-offset-3">
+
+<!-- BACK BUTTON  -->
+    <button ui-sref="form.name" class="btn btn-warning btn-xs"> Name Section <span class="glyphicon glyphicon-circle-arrow-left"></span></button>
+    <hr>
+
+<!-- NEXT BUTTON  -->
+    <button ng-disabled="forms.myForm.$invalid || forms.myForm.$pending" ui-sref="form.city" class="btn btn-block btn-success"> Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span></button>
+
+
+</div>
+</div>
+       </tab>
+       <tab label="Tab 3">
+<!-- SHOWS ON SUBMIT FROM SERVICE - NEEDS REFACTORING -->
+<div ng-show="message" id="registerMessage" class="jumbotron text-center"> {{message}} </div>
+
+<!-- CITY -->
+<div class="form-group">
+        <label for="city"> City </label>
+           <input type="text" class="form-control" name="city" ng-model="$parent.formData.city" validation-directive="city">
+           <div validation-messages="city" form="forms.myForm"> </div>
+        </label>
+</div>
+
+<!-- AGE -->
+<div class="form-group">
+        <label for="age"> Age (18+) </label>
+           <input type="date" class="form-control" name="age" ng-model="$parent.formData.age" required max="{{minAge | date: 'yyyy-MM-dd'}}">
+</div>
+
+<div class="form-group row">
+<div class="col-xs-6 col-xs-offset-3">
+
+    <button ui-sref="form.profile" class="btn btn-warning btn-xs">
+    Profile Section <span class="glyphicon glyphicon-circle-arrow-left"></span>
+    </button>
+
+    <hr>
+
+    <button ng-disabled="forms.myForm.$invalid || message" type="submit" class="btn btn-block btn-danger">
+    Submit <span class="glyphicon glyphicon-circle-arrow-right"></span>
+    </button>
+</div>
+</div>
+
+       </tab>
+    </tabs>
+  </div>
+
+
+</form>
