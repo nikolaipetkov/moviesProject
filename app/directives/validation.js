@@ -33,11 +33,7 @@ appConfig.directive('validationDirective', [
     controller: ['CONFIGURATIONS', '$scope', function(CONFIGURATIONS, $scope) {
       $scope.messages = CONFIGURATIONS[$scope.validationMessages].messages;
     }],
-    template:  '<div ng-if="form[validationMessages].$touched">' +
-           '<div ng-repeat="(key,message) in messages">' +
-             '<p ng-if="form[validationMessages].$error[key]" class="errorShower text-center"> {{message}} </p>' +
-             '</div>' +
-             '</div>'
+    templateUrl:  'directives/validationMessages.tmpl.html'
     };
   } 
 ]).directive('usernameAvailable', function($timeout, $q, $http) {
@@ -47,7 +43,7 @@ appConfig.directive('validationDirective', [
     link: function(scope, elm, attr, model) { 
       model.$asyncValidators.usernameExists = function() { 
         
-        console.log(model);
+        //console.log(model);
         return $http.get('data/backend.json').then(function(res){+
           $timeout(function(){
             model.$setValidity('usernameExists', !!res.data); 
