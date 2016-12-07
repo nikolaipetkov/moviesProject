@@ -20,3 +20,4 @@ body                            { padding-top:20px; }
 #registerMessage 				{ background:#A6D785; color: #4F8A10;}
 .errorShower					{ background:#FF9494; color: white; border-radius: 5px; margin-top: 2px;}
 
+.navigators 					{/*pointer-events: none;*/}

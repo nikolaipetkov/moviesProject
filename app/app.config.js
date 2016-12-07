@@ -45,11 +45,10 @@ appConfig.constant("CONFIGURATIONS", {
     "email": {
       "rules": {
         'required' : true,
-        'ng-pattern': "/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"
+        'ng-pattern': "/^[a-zA-Z0-9\\._-]+@[a-zA-Z0-9]+\\.[a-zA-Z]{2,}$/"
       },
       "messages" : {
         'required' : "error_required",
-        'email': "not_valid_email",
         'pattern': "not_a_valid_pattern"
       }    
   },

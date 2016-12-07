@@ -1,7 +1,8 @@
 //this is a duplicate of formController2 - could be removed
-angular.module('loginModule', ['registerService']).controller('LoginController',['$scope', 'register', function($scope, register){
+angular.module('registerModule', ['registerService']).controller('RegisterController',['$scope', '$rootScope', 'register', function($scope, $rootScope, register){
 	$scope.greeting = "Hello from Login Controller";
 
+/*
   $scope.steps = [
     'Step 1',
     'Step 2',
@@ -11,6 +12,16 @@ angular.module('loginModule', ['registerService']).controller('LoginController',
 $scope.selection = $scope.steps[0];
 
 
+
+$rootScope.$on('goStep', function(event, data){
+  $scope.selection = data;
+});
+
+
+
+
+
+/*
 //Current Index
 $scope.getCurrentStepIndex = function(){
   return $scope.steps.indexOf($scope.selection);
@@ -27,15 +38,14 @@ $scope.goToStep = function(index) {
 
 
 //Check if Next Step available - if not return 'false'
-$scope.hasNextStep = function() {
-  var currentStep = $scope.getCurrentStepIndex();
+$scope.hasNextStep = function() { var currentStep = $scope.getCurrentStepIndex();
   var nextStep = currentStep + 1;
 
   return !angular.isUndefined(nextStep);
 }
 
 
-//Check if Previous Page available - if not return 'false'
+//Check if Previous Step available - if not return 'false'
 $scope.hasPreviousStep = function() { 
   var currentStep = $scope.getCurrentStepIndex();
   var previousStep = currentStep - 1;
@@ -62,15 +72,17 @@ $scope.goPrevious = function() {
     console.log($scope.steps[previousStep])
   }
 }
+*/
 
 
-  $scope.formData = {};
-  $scope.forms = {};
 
-  //Age Minimum Restriction
-  var today = new Date();
-  var minAge = 18;
-  $scope.minAge = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
+ $scope.formData = {};
+ $scope.forms = {};
+
+ //Age Minimum Restriction
+ var today = new Date();
+ var minAge = 18;
+ $scope.minAge = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
 
 
 //getting the message from the service

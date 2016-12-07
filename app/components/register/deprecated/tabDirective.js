@@ -1,4 +1,4 @@
-/*
+/* NOT USED
 angular.module('loginModule').directive('tabs', function(){
 	return {
 		restrict: 'E',

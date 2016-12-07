@@ -4,7 +4,7 @@ var myApp = angular.module('myApp', [
   'registerService',
   'ui.validate',
   'homeModule',
-  'loginModule',
+  'registerModule',
   'formModule'
   ]);
 
@@ -21,11 +21,11 @@ myApp.config(function($stateProvider, $locationProvider, $urlRouterProvider) {
 
 
 
-  var login = {
-  name: 'login',
-  url: '/login',
-  templateUrl: 'components/login/login.html',
-  controller: 'LoginController'
+  var register = {
+  name: 'register',
+  url: '/register',
+  templateUrl: 'components/register/register.html',
+  controller: 'RegisterController'
     }
 
     
@@ -59,7 +59,7 @@ myApp.config(function($stateProvider, $locationProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/home');
 
   $stateProvider.state(home);
-  $stateProvider.state(login);
+  $stateProvider.state(register);
   $stateProvider.state(form);
   $stateProvider.state(nameForm);
   $stateProvider.state(profileForm);
