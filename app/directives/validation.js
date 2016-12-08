@@ -55,16 +55,9 @@ appConfig.directive('validationDirective', [
 }).directive('matchPassword', [function(){
   return {
     require: 'ngModel',
-    link: function(scope, elem, attr, ctrl){
-      var firstPassword = '#' + attr.matchPassword;
-      elem.add(firstPassword).on('keyup', function(){
-        scope.$apply(function(){
-          var v = elem.val()===$(firstPassword).val();
-          ctrl.$setValidity('passmatch', v);
-        });
-      });
+    link: function(scope, elem, attr, ngModel){
+        }
     }
-  }
 }]);
 
 

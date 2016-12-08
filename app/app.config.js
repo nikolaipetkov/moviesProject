@@ -45,7 +45,7 @@ appConfig.constant("CONFIGURATIONS", {
     "email": {
       "rules": {
         'required' : true,
-        'ng-pattern': "/^[a-zA-Z0-9\\._-]+@[a-zA-Z0-9]+\\.[a-zA-Z]{2,}$/"
+        'ng-pattern': /^[a-zA-Z0-9\._-]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/
       },
       "messages" : {
         'required' : "error_required",
@@ -78,7 +78,7 @@ appConfig.constant("CONFIGURATIONS", {
   },
     "confirmPassword": {
       "rules": {
-        "match-password" : "password"
+        "match-password" : "formData.password"
       },
       "messages" : {
         //'validator' : "passwords_do_not_match",

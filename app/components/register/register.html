@@ -8,9 +8,16 @@
 	</div>
 </div>
 
+
+
+
+
 <div reg-steps num-steps=3>
 
-	<div reg-step step="1" class="step1">
+
+
+
+	<div reg-step step="1">
 		<form name="forms.myForm1" novalidate="">
 	   
 				<div class="form-group">
@@ -18,31 +25,36 @@
 				<!-- FIRST NAME -->
 	
 				<label for="firstName"> First Name </label>
-					<input type="text" class="form-control" name="firstName" ng-model="$parent.formData.firstName" validation-directive="firstName"> 		
+					<input type="text" class="form-control" name="firstName" ng-model="formData.firstName" validation-directive="firstName"> 		
 					<div validation-messages="firstName" form="forms.myForm1"></div>
 				</div>
 	
 				<!-- LAST NAME -->
 				<div class="form-group">
 					<label for="lastName"> Last Name </label>
-					<input type="text" class="form-control" name="lastName" ng-model="$parent.formData.lastName" validation-directive="lastName">
+					<input type="text" class="form-control" name="lastName" ng-model="formData.lastName" validation-directive="lastName">
 					<div validation-messages="lastName" form="forms.myForm1"></div>
 				</div>
 	
 				<div class="form-group row">
 					<div class="col-xs-6 col-xs-offset-3">
+	       				<button back class="btn btn-block btn-warning btn-md"> Back <span class="glyphicon glyphicon-circle-arrow-left"></span></button>
+	       				<button next ng-disabled="forms.myForm5.$invalid" class="btn btn-block btn-success btn-md"> Next <span class="glyphicon glyphicon-circle-arrow-right"></span></button>
 					</div>
 				</div>
-	       
+
 		</form>
 	</div>
+
+
+
 
 	<div reg-step step="2">	
 		<form name="forms.myForm2" novalidate="">
 				<!-- USERNAME DIRECTIVE  -->
 				<div class="form-group">
 				    <label for="userName"> Username (Directive) </label>
-				    <input type="text" class="form-control" name="userName"  ng-model="$parent.formData.userName" ng-model-options="{allowInvalid: true, updateOn: 'blur' }"  validation-directive="userName"   >
+				    <input type="text" class="form-control" name="userName"  ng-model="formData.userName" ng-model-options="{allowInvalid: true, updateOn: 'blur' }"  validation-directive="userName"   >
 				    <div validation-messages="userName" form="forms.myForm2"></div> 
 				</div>
 		
@@ -50,7 +62,7 @@
 				<!-- PASSWORD  -->
 				<div class="form-group">
 				    <label for="password">Password</label>
-				    <input type="password" class="form-control" name="password" id="password" ng-model="$parent.formData.password" validation-directive="password">
+				    <input type="password" class="form-control" name="password" id="password" ng-model="formData.password" validation-directive="password">
 				    <div validation-messages="password" form="forms.myForm2"></div>
 				</div>
 		
@@ -58,8 +70,8 @@
 				<!-- CONFIRM PASSWORD  -->
 				<div class="form-group">
 				    <label for="confirmPassword"> Confirm Password</label>
-				    <input type="password" class="form-control" name="confirmPassword" ng-model="$parent.formData.confirmPassword" ui-validate=" '$value==$parent.formData.password' "
-				       ui-validate-watch=" '$parent.formData.password' " validation-directive="confirmPassword">
+				    <input type="password" class="form-control" name="confirmPassword" ng-model="formData.confirmPassword" ui-validate=" '$value==formData.password' "
+				       ui-validate-watch=" 'formData.password' " validation-directive="confirmPassword">
 				    <div validation-messages="confirmPassword" form="forms.myForm2"></div>
 				</div>
 		
@@ -67,8 +79,15 @@
 				<!-- EMAIL  -->
 				<div class="form-group">
 				    <label for="email">Email</label>
-				    <input type="text" class="form-control" name="email" ng-model="$parent.formData.email" validation-directive="email">
+				    <input type="text" class="form-control" name="email" ng-model="formData.email" validation-directive="email">
 				    <div validation-messages="email" form="forms.myForm2"></div>
+				</div>
+
+				<div class="form-group row">
+					<div class="col-xs-6 col-xs-offset-3">
+	       				<button back class="btn btn-block btn-warning btn-md"> Back <span class="glyphicon glyphicon-circle-arrow-left"></span></button>
+	       				<button next ng-disabled="forms.myForm2.$invalid" class="btn btn-block btn-success btn-md"> Next <span class="glyphicon glyphicon-circle-arrow-right"></span></button>
+					</div>
 				</div>		
 		</form>
 	</div>
@@ -76,158 +95,47 @@
 
 
 
-
-</div>
-<!--
-  <ul class="nav nav-tabs navigators">
-    <li ng-repeat="step in steps" ng-class="{active: $index==getCurrentStepIndex()}">
-      <a href="javascript:void(0)" ng-click="goToStep($index)">{{step}}</a>
-    </li>
-  </ul>
-
-
-<div ng-switch on="selection">
-
-
-	<div ng-switch-when="Step 1">
-		<form name="forms.myForm1" novalidate="">
-	   
-				<div class="form-group">
-	
-				<!-- FIRST NAME ->
-	
-				<label for="firstName"> First Name </label>
-					<input type="text" class="form-control" name="firstName" ng-model="$parent.formData.firstName" validation-directive="firstName"> 		
-					<div validation-messages="firstName" form="forms.myForm1"></div>
-				</div>
-	
-				<!-- LAST NAME ->
-				<div class="form-group">
-					<label for="lastName"> Last Name </label>
-					<input type="text" class="form-control" name="lastName" ng-model="$parent.formData.lastName" validation-directive="lastName">
-					<div validation-messages="lastName" form="forms.myForm1"></div>
-				</div>
-	
-				<div class="form-group row">
-					<div class="col-xs-6 col-xs-offset-3">
-					</div>
-				</div>
-	       
-		</form>
-
-			<!-- NEXT ->
-			<div class="form-group row">
-				<div class="col-xs-6 col-xs-offset-3">
-					<button ng-click="goNext()" ng-disabled="forms.myForm1.$invalid" class="btn btn-block btn-success"> Go Next <span class="glyphicon glyphicon-circle-arrow-right"></span></button>
-				</div>
-			</div>
-	</div>
-
-
-
-
-
-	<div ng-switch-when="Step 2">
-		<form name="forms.myForm2" novalidate="">
-				<!-- USERNAME DIRECTIVE  ->
-				<div class="form-group">
-				    <label for="userName"> Username (Directive) </label>
-				    <input type="text" class="form-control" name="userName"  ng-model="$parent.formData.userName" ng-model-options="{allowInvalid: true, updateOn: 'blur' }"  validation-directive="userName"   >
-				    <div validation-messages="userName" form="forms.myForm2"></div> 
-				</div>
-		
-		
-				<!-- PASSWORD  ->
-				<div class="form-group">
-				    <label for="password">Password</label>
-				    <input type="password" class="form-control" name="password" id="password" ng-model="$parent.formData.password" validation-directive="password">
-				    <div validation-messages="password" form="forms.myForm2"></div>
-				</div>
-		
-		
-				<!-- CONFIRM PASSWORD  ->
-				<div class="form-group">
-				    <label for="confirmPassword"> Confirm Password</label>
-				    <input type="password" class="form-control" name="confirmPassword" ng-model="$parent.formData.confirmPassword" ui-validate=" '$value==$parent.formData.password' "
-				       ui-validate-watch=" '$parent.formData.password' " validation-directive="confirmPassword">
-				    <div validation-messages="confirmPassword" form="forms.myForm2"></div>
-				</div>
-		
-		
-				<!-- EMAIL  ->
-				<div class="form-group">
-				    <label for="email">Email</label>
-				    <input type="text" class="form-control" name="email" ng-model="$parent.formData.email" validation-directive="email">
-				    <div validation-messages="email" form="forms.myForm2"></div>
-				</div>
-		
-		</form>
-		 	<!-- BACK ->
-			<div class="form-group row">
-				<div class="col-xs-6 col-xs-offset-3">
-					<button ng-click="goPrevious()" class="btn btn-block btn-warning"> Go Back <span class="glyphicon glyphicon-circle-arrow-left"></span></button>
-				</div>
-			</div>
-			
-			<!-- NEXT ->
-			<div class="form-group row">
-				<div class="col-xs-6 col-xs-offset-3">
-					<button ng-click="goNext()" ng-disabled="forms.myForm2.$invalid" class="btn btn-block btn-success"> Go Next <span class="glyphicon glyphicon-circle-arrow-right"></span></button>
-				</div>
-			</div>
-	</div>	
-
-
-
-
-
-
-
-
-
-	<div ng-switch-when="Step 3">
-		<form name="forms.myForm3" ng-submit="processForm(forms.myForm3.$valid)" novalidate="">       
-				<!-- SHOWS ON SUBMIT FROM SERVICE - NEEDS REFACTORING ->
+	<div reg-step step="3">
+		<form name="forms.myForm3" novalidate="">       
+				<!-- SHOWS ON SUBMIT FROM SERVICE - NEEDS REFACTORING -->
 				<div ng-show="message" id="registerMessage" class="jumbotron text-center"> {{message}} </div>
 	
-				<!-- CITY ->
+				<!-- CITY -->
 				<div class="form-group">
-				        <label for="city"> City </label>
-				           <input type="text" class="form-control" name="city" ng-model="$parent.formData.city" validation-directive="city">
-				           <div validation-messages="city" form="forms.myForm3"> </div>
+					<label for="city"> City </label>
+					<input type="text" class="form-control" name="city" ng-model="formData.city" validation-directive="city">
+					<div validation-messages="city" form="forms.myForm3"> </div>
 				</div>
 	
-				<!-- AGE ->
+				<!-- AGE -->
 				<div class="form-group">
-				        <label for="age"> Age (18+) </label>
-				        <input type="date" class="form-control" name="age" ng-model="$parent.formData.age" required max="{{minAge | date: 'yyyy-MM-dd'}}">
+				    <label for="age"> Age (18+) </label>
+				    <input type="date" class="form-control" name="age" ng-model="formData.age" required max="{{minAge | date: 'yyyy-MM-dd'}}">
 				</div>
 	
 				<div class="form-group row">
 					<div class="col-xs-6 col-xs-offset-3">
-					    <button ng-disabled="forms.myForm3.$invalid || message" type="submit" class="btn btn-block btn-danger">
-					    Submit <span class="glyphicon glyphicon-circle-arrow-right"></span>
-					    </button>
+						<button ng-disabled="forms.myForm3.$invalid || message" type="submit" ng-click="processForm()" class="btn btn-block btn-danger">
+						Submit <span class="glyphicon glyphicon-circle-arrow-up"></span>
+						</button>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<div class="col-xs-6 col-xs-offset-3">
+	       				<button back ng-disabled="shown" class="btn btn-block btn-warning btn-md"> Back <span class="glyphicon glyphicon-circle-arrow-left"></span></button>
+	       				<button next ng-disabled="forms.myForm3.$invalid" class="btn btn-block btn-success btn-md"> Next <span class="glyphicon glyphicon-circle-arrow-right"></span></button>
 					</div>
 				</div>      
 		</form>
-		 	<!-- BACK ->
-			<div class="form-group row">
-				<div class="col-xs-6 col-xs-offset-3">
-					<button ng-click="goPrevious()" class="btn btn-block btn-warning"> Go Back <span class="glyphicon glyphicon-circle-arrow-left"></span></button>
-				</div>
-			</div>
-			
+
 
 	</div>
+</div>
 
-
-</div> <!-- row.19 ->
-
-
-
--->
 
 <pre>
     {{ formData }}
 </pre>
+
+<!-- ng-submit="processForm(forms.myForm3.$valid)" -->

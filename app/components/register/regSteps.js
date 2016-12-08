@@ -7,46 +7,50 @@ angular.module('registerModule').directive('regSteps', function(){
 		bindToController: true,
 
 		link: function(scope, element, attr, ctrl) {
-		},
+			},
 
-		controller: function(){
+		controller: function($scope, $rootScope){
 
-			this.current = 1;
+			var ctrl = this;
+
+			this.current = {current: 1};
 
 			this.numSteps = parseInt(this.numSteps);
 
 			this.getCurrent = function(){
-				return this.current;
+				return this.current.current;
 			}
 
 			this.doSomething = function() {
 				console.log('done!!!');
 			}
 
-			//Check if Next Step available - if not return 'false'
-			this.hasNext = function() {
-				var nextStep = this.current + 1;
-				return nextStep < this.numsteps;
+
+			this.isLast = function() {
+				return this.current.current == this.numSteps;
 			};
 
-			//Check if Previous Step available - if not return 'false'
-			this.hasPrevious = function() {
-				var previousStep = $this.current - 1;
-				return previousStep > 0;
+			this.isFirst = function() {
+				return this.current.current == 1;
 			};
 
 
 			this.goNext = function() {
-				if($this.hasNext()){
-					return $this.current + 1;
+				if(!this.isLast()){
+					return this.current.current = this.current.current + 1;
+					console.log(this.current.current);
 				}
 			}
 
 			this.goPrevious = function() {
-				if(this.hasPrevious()){
-					return this.current - 1;
+				if(!this.isFirst()){
+					return this.current.current = this.current.current - 1;
 				}
 			}
+
+			$rootScope.$on('stateChange', function(){
+			})
+
 		},
 		controllerAs: 'vm'
 	};
@@ -57,20 +61,78 @@ angular.module('registerModule').directive('regSteps', function(){
 			step: '@'
 		},
 		link: function(scope, elem, attrs, ctrl){
-			scope.step = parseInt(scope.step);
-			console.log(ctrl.getCurrent());
-			console.log(typeof scope.step);
+
+			var setVisibility = function() {
+
+			}
+			
+			scope.$root.$on('stateChange', function(){
+				scope.step = parseInt(scope.step);
 				if(scope.step !== ctrl.getCurrent()){
 					elem.addClass('hidden');
+				} else if (scope.step == ctrl.getCurrent()){
+					elem.removeClass('hidden');
 				}
-			}
-		}
+			})
+
+			//needs refactoring ?
+			scope.step = parseInt(scope.step);
+			if(scope.step !== ctrl.getCurrent()){
+				elem.addClass('hidden');
+			};
+
+
+			} 
+		} 
 	}
 ).directive('next', function(){
 	return {
 		require: '^^regSteps',
 		scope: {},
-		link: function(scope, elem, attrs, ctrl){	
+		link: function(scope, elem, attrs, ctrl){
+
+			scope.$root.$on('stateChange', function(){
+				if(ctrl.isLast()){
+					elem.addClass('hidden');
+				} else {
+					elem.removeClass('hidden');
+				}
+			});
+
+
+
+			elem.bind('click', function(){
+				ctrl.goNext();
+				scope.$emit('stateChange');
+				console.log(ctrl.current.current)
+			});
+		}
+	}
+}).directive('back', function(){
+	return {
+		require: '^^regSteps',
+		scope: {},
+		link: function(scope, elem, attrs, ctrl){
+
+			if(ctrl.isFirst()){
+				elem.addClass('hidden');
+			}
+
+			scope.$root.$on('stateChange', function(){
+				if(ctrl.isFirst()){
+					elem.addClass('hidden');
+				} else {
+					elem.removeClass('hidden');
+				}
+			});
+
+
+
+			elem.bind('click', function(){
+				ctrl.goPrevious();
+				scope.$emit('stateChange');
+				console.log(ctrl.current.current)
+			});
 		}
 	}
 })
