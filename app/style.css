@@ -21,3 +21,5 @@ body                            { padding-top:20px; }
 .errorShower					{ background:#FF9494; color: white; border-radius: 5px; margin-top: 2px;}
 
 .navigators 					{/*pointer-events: none;*/}
+
+.active 						{background: orange;}

@@ -135,4 +135,30 @@ angular.module('registerModule').directive('regSteps', function(){
 			});
 		}
 	}
+}).directive('navtab', function(){
+	return {
+		scope: {
+			tabFor: "@"
+		},
+		require: '^^regSteps',
+		link: function(scope, elem, attrs, regStepsCtrl){
+
+			if(regStepsCtrl.getCurrent() == scope.tabFor){
+				elem.addClass('active');
+			};
+
+			scope.$root.$on('stateChange', function(){
+				if(regStepsCtrl.getCurrent() == scope.tabFor){
+					elem.addClass('active');
+				} else {
+					elem.removeClass('active');
+				}
+			})
+
+
+
+		}
+	}
 })
+
+

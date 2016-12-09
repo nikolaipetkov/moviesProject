@@ -4,6 +4,8 @@ angular.module('registerModule', ['registerService']).controller('RegisterContro
 
    $scope.formData = {};
    $scope.forms = {};
+
+
   
    //Age Minimum Restriction
    var today = new Date();

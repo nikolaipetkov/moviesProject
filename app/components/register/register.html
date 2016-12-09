@@ -12,9 +12,13 @@
 
 
 
+
+
 <div reg-steps num-steps=3>
 
-
+<button navtab tab-for = "1"> 1 tab </button>
+<button navtab tab-for = "2"> 2 tab </button>
+<button navtab tab-for = "3"> 3 tab </button>
 
 
 	<div reg-step step="1">
@@ -70,8 +74,7 @@
 				<!-- CONFIRM PASSWORD  -->
 				<div class="form-group">
 				    <label for="confirmPassword"> Confirm Password</label>
-				    <input type="password" class="form-control" name="confirmPassword" ng-model="formData.confirmPassword" ui-validate=" '$value==formData.password' "
-				       ui-validate-watch=" 'formData.password' " validation-directive="confirmPassword">
+				    <input type="password" class="form-control" name="confirmPassword" ng-model="formData.confirmPassword" validation-directive="confirmPassword">
 				    <div validation-messages="confirmPassword" form="forms.myForm2"></div>
 				</div>
 		
