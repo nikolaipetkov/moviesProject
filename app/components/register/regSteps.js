@@ -1,17 +1,21 @@
 angular.module('registerModule').directive('regSteps', function(){
 
 	return {
-		scope: {
-			numSteps: '@',
-		},
-		bindToController: true,
+		//scope: {
+		//	numSteps: '@',
+		//},
+		//bindToController: true,
 
 		link: function(scope, element, attr, ctrl) {
+			ctrl.numSteps = attr.numSteps; // refactoring because of the scope change
 			},
 
 		controller: function($scope, $rootScope){
 
+			
 			var ctrl = this;
+
+			console.log($scope.attr)
 
 			this.current = {current: 1};
 
@@ -57,17 +61,15 @@ angular.module('registerModule').directive('regSteps', function(){
 }).directive('regStep', function(){
 	return {
 		require: '^^regSteps',
-		scope: {
-			step: '@'
-		},
+		//scope: {
+		//	step: '@'
+		//},
 		link: function(scope, elem, attrs, ctrl){
 
-			var setVisibility = function() {
-
-			}
+			var setVisibility = function() {};
 			
 			scope.$root.$on('stateChange', function(){
-				scope.step = parseInt(scope.step);
+				scope.step = parseInt(attrs.step); // here is the refactoring for the scope option attrs.step
 				if(scope.step !== ctrl.getCurrent()){
 					elem.addClass('hidden');
 				} else if (scope.step == ctrl.getCurrent()){
@@ -75,8 +77,7 @@ angular.module('registerModule').directive('regSteps', function(){
 				}
 			})
 
-			//needs refactoring ?
-			scope.step = parseInt(scope.step);
+			scope.step = parseInt(attrs.step);
 			if(scope.step !== ctrl.getCurrent()){
 				elem.addClass('hidden');
 			};
@@ -88,7 +89,7 @@ angular.module('registerModule').directive('regSteps', function(){
 ).directive('next', function(){
 	return {
 		require: '^^regSteps',
-		scope: {},
+		//scope: {},
 		link: function(scope, elem, attrs, ctrl){
 
 			scope.$root.$on('stateChange', function(){
@@ -111,7 +112,7 @@ angular.module('registerModule').directive('regSteps', function(){
 }).directive('back', function(){
 	return {
 		require: '^^regSteps',
-		scope: {},
+		//scope: {},
 		link: function(scope, elem, attrs, ctrl){
 
 			if(ctrl.isFirst()){
@@ -137,18 +138,20 @@ angular.module('registerModule').directive('regSteps', function(){
 	}
 }).directive('navtab', function(){
 	return {
-		scope: {
-			tabFor: "@"
-		},
+		//scope: {
+		//	tabFor: "@"
+		//},
 		require: '^^regSteps',
 		link: function(scope, elem, attrs, regStepsCtrl){
 
-			if(regStepsCtrl.getCurrent() == scope.tabFor){
+			var tabFor = attrs.tabFor // refactoring because of scope change otherwise it would be scope.tabFor instead of tabFor
+
+			if(regStepsCtrl.getCurrent() == tabFor){
 				elem.addClass('active');
 			};
 
 			scope.$root.$on('stateChange', function(){
-				if(regStepsCtrl.getCurrent() == scope.tabFor){
+				if(regStepsCtrl.getCurrent() == tabFor){
 					elem.addClass('active');
 				} else {
 					elem.removeClass('active');
@@ -159,6 +162,6 @@ angular.module('registerModule').directive('regSteps', function(){
 
 		}
 	}
-})
+});
 
 

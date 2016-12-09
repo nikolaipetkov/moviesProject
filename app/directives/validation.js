@@ -56,24 +56,23 @@ appConfig.directive('validationDirective', [
   return {
     require: 'ngModel',
        link: function(scope, elem, attr, ngModel){
-        console.log(attr)
+        //console.log(attr)
+        var checker = function() {
+          return scope.$parent.formData.password === ngModel.$viewValue;
+        };
 
         var originalPassword = attr.matchPassword;
         var confirmPassword = attr.ngModel;
 
         scope.$parent.$watch(originalPassword, function() {
-          console.log(scope.$parent.formData.password)
           ngModel.$setValidity('passmatch', checker());
         });
 
         scope.$watch(confirmPassword, function(){
-          console.log(ngModel.$viewValue)
           ngModel.$setValidity('passmatch', checker());
         });
 
-        var checker = function() {
-          return scope.$parent.formData.password === ngModel.$viewValue;
-        };
+
 
         }
     }
