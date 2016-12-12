@@ -15,7 +15,7 @@ angular.module('registerModule').directive('regSteps', function(){
 			
 			var ctrl = this;
 
-			console.log($scope.attr)
+			//console.log($scope.attr)
 
 			this.current = {current: 1};
 

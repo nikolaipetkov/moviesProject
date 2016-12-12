@@ -1,6 +1,5 @@
 //this is a duplicate of formController2 - could be removed
 angular.module('registerModule', ['registerService']).controller('RegisterController',['$scope', '$rootScope', 'register', function($scope, $rootScope, register){
-	$scope.greeting = "Hello from Login Controller";
 
    $scope.formData = {};
    $scope.forms = {};
@@ -21,7 +20,6 @@ angular.module('registerModule', ['registerService']).controller('RegisterContro
      });
       }
 
-    //$scope.shown = false;
 
   }]);
 

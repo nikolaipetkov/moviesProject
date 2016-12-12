@@ -2,6 +2,7 @@
 
 var appConfig = angular.module('AppConfig', []);
 
+var just = "{{formData.password}}";
 appConfig.constant("CONFIGURATIONS", {
   "firstName": {
     "rules" : {
@@ -78,7 +79,7 @@ appConfig.constant("CONFIGURATIONS", {
   },
     "confirmPassword": {
       "rules": {
-        "match-password" : "formData.password"
+        "match-password" : "{{formData.password}}" 
       },
       "messages" : {
         //'validator' : "passwords_do_not_match",
