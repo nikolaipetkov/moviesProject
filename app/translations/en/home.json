@@ -1,0 +1,7 @@
+{  
+    "COLOR" : "Color",
+    "HELLO" : "Hello",
+    "HELLO_WORLD" : " Hello World!",
+    "PRICE" : "Price is: {{price}} BGN"
+ 
+}

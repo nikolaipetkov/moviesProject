@@ -46,59 +46,30 @@ require('load-grunt-tasks')(grunt);
         options: {
             port: 9005,
             base: "app/",
-            keepalive: true
+            keepalive: true,
+            //livereload: true
         }
     }
 
-}   //,
-
-
-
-
-    // grunt-express will serve the files from the folders listed in `bases`
-    // on specified `port` and `hostname`
-    /*
-    express: {
-      all: {
-      options: {
-         
-       port: 9003,
-       hostname: "0.0.0.0",
-       bases: 'app/',
-       }, // Replace with the directory you want the files served from
-                           // Make sure you don't use `.` or `..` in the path as Express
-                           // is likely to return 403 Forbidden responses if you do
-                           // http://stackoverflow.com/questions/14594121/express-res-sendfile-throwing-forbidden-error
-        livereload: true
-   }
-  },
-    */
+} //,   
 
     // grunt-watch will monitor the projects files
-
 /*
+
     watch: {
       all: {
-
-        files: ['index.html', 'app.css'],
-        tasks: ['jshint'],
         options: {
           livereload: true
-        }
+        },
+        files: ['app/index.html', 'app/style.css']//,
+        //tasks: ['jshint'],
+
       }
     },
+
 */
 
 
-    // grunt-open will open your browser at the project's URL
-    /*
-    open: {
-      all: {
-        // Gets the port from the connect configuration
-        path: 'http://localhost:<%= express.all.options.port%>'
-      }
-    }
-    */
    
   });
 
@@ -106,8 +77,6 @@ require('load-grunt-tasks')(grunt);
   // Creates the `server` task
   grunt.registerTask('server', [
     'connect',
-    //'express',
-   //'open',
-   //'watch'
+   	//'watch'
   ]);
 };

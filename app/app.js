@@ -5,7 +5,8 @@ var myApp = angular.module('myApp', [
   'ui.validate',
   'homeModule',
   'registerModule',
-  'formModule'
+  'formModule',
+  'getTranslations'
   ]);
 
 myApp.config(function($stateProvider, $locationProvider, $urlRouterProvider) {

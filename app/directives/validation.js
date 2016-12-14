@@ -4,15 +4,14 @@ appConfig.directive('validationDirective', [
   function(CONFIGURATIONS, $compile, link) {
     return {
      link: function(scope, element, attrs) {
-        var config = CONFIGURATIONS[attrs.validationDirective]['rules'];
-        console.log();
+       var config = CONFIGURATIONS[attrs.validationDirective]['rules'];
 
        angular.forEach(config, function(key,value){
           element.attr(value,key);
-        });
+       });
 
-            element.removeAttr('validation-directive'); // needed because of infinite loop
-            $compile(element)(scope);   // applies all the rules to the element
+          element.removeAttr('validation-directive'); // needed because of infinite loop
+          $compile(element)(scope);   // applies all the rules to the element
       },
 
       controller: function($scope, $element, $attrs) {      
@@ -53,7 +52,7 @@ appConfig.directive('validationDirective', [
     restrict: 'A',
     require: 'ngModel',
        link: function(scope, elem, attrs, ngModel){
-       
+       console.log(attrs)
        ngModel.$validators.passmatch = function() {
         return ngModel.$viewValue === attrs.matchPassword;
        }

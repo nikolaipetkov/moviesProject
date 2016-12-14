@@ -25,11 +25,6 @@ angular.module('registerModule').directive('regSteps', function(){
 				return this.current.current;
 			}
 
-			this.doSomething = function() {
-				console.log('done!!!');
-			}
-
-
 			this.isLast = function() {
 				return this.current.current == this.numSteps;
 			};
@@ -52,8 +47,8 @@ angular.module('registerModule').directive('regSteps', function(){
 				}
 			}
 
-			$rootScope.$on('stateChange', function(){
-			})
+			//$rootScope.$on('stateChange', function(){
+			//})
 
 		},
 		controllerAs: 'vm'
