@@ -2,6 +2,7 @@
     "COLOR" : "Color",
     "HELLO" : "Hello",
     "HELLO_WORLD" : " Hello World!",
-    "PRICE" : "Price is: {{price}} BGN"
+    "PRICE" : "Price is: {{price}} BGN",
+    "FIRST_NAME": "First name is {{firstName}} and the price is {{price}} :"
  
 }

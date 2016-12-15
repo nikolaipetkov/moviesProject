@@ -12,13 +12,15 @@ angular.module('homeModule', ['getTranslations', 'getTrans'])
 	};
 	
 
-	//$scope.translate = function(){
-	//	getTranslations.getTranslation($scope, stateName, $scope.selectedLanguage);
-	//}
-//
-	//var stateName = $state.current.name;
-	//$scope.selectedLanguage = "en";
-	//$scope.translate();
+	$scope.translate = function(){
+		getTranslations.getTranslations(stateName, $scope.selectedLanguage).$promise.then(function(translations){
+			console.log(translations);
+		});
+	}
+
+	var stateName = $state.current.name;
+	$scope.selectedLanguage = "en";
+	$scope.translate();
 
 
 
