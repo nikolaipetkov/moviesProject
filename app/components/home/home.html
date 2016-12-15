@@ -5,9 +5,17 @@
   <option value="bg">Bulgarian</option>
 </select>
 
+<!--
 {{translation.HELLO_WORLD}}
 {{translation.COLOR}}
 {{translation}}
 <div class="jumbotron text-center"> Home {{greeting}} </div>
 
 <label>{{translation.PRICE}} </label>
+-->
+
+
+
+<h1>{{ 'FIRST_NAME' | getTrans:translationData }}</h1>
+
+<h1>{{ 'FIRST_NAME' | getTrans:{firstName: "Nikolai", price: 25} }}</h1>
