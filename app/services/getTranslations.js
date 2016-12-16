@@ -1,7 +1,8 @@
 'use strict';
 
-angular.module('getTranslations', ['ngResource'])
-.service('getTranslations', function($resource, $q) { 
+var getTranslations = angular.module('getTranslations', ['ngResource']);
+
+getTranslations.service('getTranslations', function($resource, $q, $interpolate) { 
 
 	this.translations = {
 		general : [],
@@ -40,24 +41,43 @@ angular.module('getTranslations', ['ngResource'])
 	this.translate = function() {
 		$q.all([_self.promises.general, _self.promises.path]).then(function(resp1){
 			//_self.translations is usable here
-			_self.translations.general = angular.toJson(resp1[0], 1);	//removed resp2 because i get an array in resp1
-			_self.translations.path = angular.toJson(resp1[1], 1);	//removed resp2 because i get an array in resp1
-
-
-			console.log(_self.translations.general)
-			console.log(_self.translations.path)
-	
-			
+			_self.translations.general = resp1[0];	//removed resp2 because i get an array in resp1
+			_self.translations.path = angular.fromJson(resp1[1]);	//removed resp2 because i get an array in resp1			
 		})
 	}
 
- //   
- //      register.get().$promise.then(function (data){
- //    $scope.message = data.message;
- //  });
+	this.translateCurrent = function(label,parameters) {
+		$q.all([_self.promises.general, _self.promises.path]).then(function(resp1){
+			//_self.translations is usable here
+			_self.translations.general = resp1[0];	//removed resp2 because i get an array in resp1
+			_self.translations.path = angular.fromJson(resp1[1]);	//removed resp2 because i get an array in resp1	
+			//console.log(_self.translations.general)
+			if(parameters == null){
+				console.log(_self.translations.general[label])
+				var result = _self.translations.general[label]
+				console.log(result)
+				return result;
+			} else{
+				return $interpolate(
+					_self.translations.general[label])(parameters);
+			} 		
+		})
+	}
 
 
 
-
-
+	this.getTranslateFn = function(label, parameters){
+		if(parameters == null){
+			return _self.translations.general[label]
+		} else {
+			return $interpolate(_self.translations.general[label])(parameters);
+		}
+	}
 });
+
+
+getTranslations.filter('getCurrentTransl', ['getTranslations', function(getTranslations){
+	return function(label, parameters){
+		return getTranslations.translateCurrent(label,parameters);
+	}
+}])

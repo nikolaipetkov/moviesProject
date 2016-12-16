@@ -6,7 +6,8 @@ getTrans.factory('getTransService',['$interpolate', function($interpolate, $reso
 	var currentLanguage = 'en';
 
 	var tables = {
-		'en': { 'FIRST_NAME': 'First name is {{firstName}} and the price is {{price}} :'},
+		'en': { 'FIRST_NAME': 'First name is {{firstName}} and the price is {{price}} :',
+		'LAST_NAME': 'just a last name'},
 		'bg': { 'FIRST_NAME': 'Ime'}
 	};
 
@@ -27,10 +28,12 @@ getTrans.factory('getTransService',['$interpolate', function($interpolate, $reso
 		},
 		getTransFn: function(label,parameters){
 			if(parameters == null){
+				//console.log(tables)
 				return tables[currentLanguage][label];
 			} else {
 			return $interpolate(
 				tables[currentLanguage][label])(parameters);
+
 			}
 		}
 	};
