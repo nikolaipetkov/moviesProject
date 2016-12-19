@@ -69,7 +69,21 @@ myApp.config(function($stateProvider, $locationProvider, $urlRouterProvider) {
 
 
 
+myApp.run(function($rootScope, getTranslations, $state, $interpolate, $q){
+      $rootScope.$on('$stateChangeSuccess', function(){
+        console.log('state change success fired')
+        var stateName = $state.current.name;
+        $rootScope.selectedLanguage = "en";
 
+        getTranslations.getTranslations(stateName, $rootScope.selectedLanguage);
+
+        getTranslations.translate().then(function(data){
+          $rootScope.results = data;
+          console.log($rootScope.results)
+        })
+      })
+
+})
 
 
 

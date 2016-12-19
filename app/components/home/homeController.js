@@ -9,11 +9,7 @@ angular.module('homeModule', ['getTranslations', 'getTrans'])
 
 
 
-	$scope.$on('$stateChangeSuccess', function(){
-		getTranslations.getTranslations(stateName, $scope.selectedLanguage);
-		getTranslations.translate();
-		console.log('stateChangeSuccess fired')
-	})
+
 
 	$scope.selectCurrentLanguage = function(language) {
 		getTransService.setCurrentLanguage(language);
