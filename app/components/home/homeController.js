@@ -1,5 +1,5 @@
 angular.module('homeModule', ['getTranslations', 'getTrans'])
-.controller('HomeController', function($scope, $rootScope, $state, getTranslations, getTransService, $timeout, $interpolate, $q){
+.controller('HomeController', function($scope, $rootScope, $state, getTranslations, getTransService, $timeout, $interpolate, $q, delayedData){
 	$scope.greeting = "Hello from Home Controller";
 	$scope.price = 20;
 	$scope.translationData = {
@@ -8,36 +8,18 @@ angular.module('homeModule', ['getTranslations', 'getTrans'])
 	};
 
 
-
-
-
-	$scope.selectCurrentLanguage = function(language) {
-		getTransService.setCurrentLanguage(language);
-	};
-	
-
-	$scope.translate = function(){
-		//getTranslations.getTranslations(stateName, $scope.selectedLanguage).$promise.then(function(translations){
-		//	console.log(translations);
-		
-		
-	};
-	//}
-
 	var stateName = $state.current.name;
 	$scope.selectedLanguage = "en";
-	$scope.translate();
 
 
 
+  //$scope.test = delayedData[0];
+  //$scope.test2 = $scope.justGetIt('FIRST_NAME', null, {firstName: "Nikolai21312312", price: 20});
+  //console.log(delayedData)
+    
+$scope.test2 = $rootScope.justGetItDone('FIRST_NAME', 0, {firstName: "Nikolai21312312", price: 20} );
 
-//var tellme = function() {
-//	console.log($scope.translation)
-//}
 
-
-
-	//$timeout(tellme, 100);
 	
 
 

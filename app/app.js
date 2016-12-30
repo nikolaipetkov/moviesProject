@@ -17,8 +17,22 @@ myApp.config(function($stateProvider, $locationProvider, $urlRouterProvider) {
   name: 'home',
   url: '/home',
   templateUrl: 'components/home/home.html',
-  controller: 'HomeController'
+  controller: 'HomeController',
+  resolve: {
+     delayedData: function($q, getTranslations, $rootScope){
+       var generalPromise = getTranslations.getTranslations('general', 'en');
+       var pathPromise = getTranslations.getTranslations('home', 'en');
+
+       //return getTranslations.exposeTranslations();
+
+       return $q.all([generalPromise.$promise, pathPromise.$promise]).then(function(){
+          $rootScope.generalTranslations = generalPromise;
+          $rootScope.pathTranslations = pathPromise;
+       })
+       
     }
+  }
+}
 
 
 
@@ -26,8 +40,23 @@ myApp.config(function($stateProvider, $locationProvider, $urlRouterProvider) {
   name: 'register',
   url: '/register',
   templateUrl: 'components/register/register.html',
-  controller: 'RegisterController'
+  controller: 'RegisterController',
+  resolve: {
+     delayedData: function($q, getTranslations, $rootScope){
+       var generalPromise = getTranslations.getTranslations('general', 'en');
+       var pathPromise = getTranslations.getTranslations('register', 'en');
+
+      // return getTranslations.exposeTranslations();
+
+       return $q.all([generalPromise.$promise, pathPromise.$promise]).then(function(){
+          $rootScope.generalTranslations = generalPromise;
+          $rootScope.pathTranslations = pathPromise;
+       })
+       
+       
     }
+  }
+  }
 
     
 
@@ -70,20 +99,37 @@ myApp.config(function($stateProvider, $locationProvider, $urlRouterProvider) {
 
 
 myApp.run(function($rootScope, getTranslations, $state, $interpolate, $q){
+
+
       $rootScope.$on('$stateChangeSuccess', function(){
-        console.log('state change success fired')
-        var stateName = $state.current.name;
-        $rootScope.selectedLanguage = "en";
 
-        getTranslations.getTranslations(stateName, $rootScope.selectedLanguage);
+            console.log('state change success fired')
+            var stateName = $state.current.name;
+            $rootScope.selectedLanguage = "en";
 
-        getTranslations.translate().then(function(data){
-          $rootScope.results = data;
-          console.log($rootScope.results)
-        })
+           console.log($rootScope.generalTranslations)
+           console.log($rootScope.pathTranslations)
+            
+
+          $rootScope.justGetItDone = function(label, isGeneral, parameters){
+            if(parameters == null && isGeneral == 0){
+              return $rootScope.pathTranslations[label]
+            } else if(parameters == null && isGeneral == 1) {
+              return $rootScope.generalTranslations[label]        
+            } else if(parameters !== null && isGeneral == 0){
+              return $interpolate($rootScope.pathTranslations[label])(parameters);
+            } else if(parameters !== null && isGeneral == 1){
+              return $interpolate($rootScope.generalTranslations[label])(parameters);
+            }
+          }
+          
+
+
       })
 
 })
+
+
 
 
 

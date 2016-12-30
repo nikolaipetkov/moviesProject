@@ -11,7 +11,7 @@ angular.module('registerModule', ['registerService']).controller('RegisterContro
    var minAge = 18;
    $scope.minAge = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
   
-  
+  $scope.testing = $rootScope.justGetItDone("REGISTER", 0, {parameter: " with custom parameter"});
   
   //getting the message from the service
     $scope.processForm = function() {
