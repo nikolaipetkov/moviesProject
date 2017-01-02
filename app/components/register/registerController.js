@@ -3,24 +3,21 @@ angular.module('registerModule', ['registerService']).controller('RegisterContro
 
    $scope.formData = {};
    $scope.forms = {};
-
-
   
-   //Age Minimum Restriction
-   var today = new Date();
-   var minAge = 18;
-   $scope.minAge = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
+//Age Minimum Restriction
+var today = new Date();
+var minAge = 18;
+$scope.minAge = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
   
-  $scope.testing = $rootScope.justGetItDone("REGISTER", 0, {parameter: " with custom parameter"});
+$scope.testing = $rootScope.getCurrent("REGISTER", 0, {parameter: " with custom parameter"});
   
-  //getting the message from the service
-    $scope.processForm = function() {
+//getting the message from the service
+  $scope.processForm = function() {
      register.get().$promise.then(function (data){
        $scope.message = data.message;
      });
-      }
+  }
 
-
-  }]);
+}]);
 
 

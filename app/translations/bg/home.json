@@ -1,5 +1,6 @@
 {  
     "COLOR" : "Cvqt",
     "HELLO" : "Zdrasti",
-    "HELLO_WORLD" : "Zdravei Svqt!"
+    "HELLO_WORLD" : "Zdravei Svqt!",
+    "FIRST_NAME": "bulgarski name is {{firstName}} and the price is {{price}} :"
 }

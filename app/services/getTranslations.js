@@ -4,11 +4,13 @@ var getTranslations = angular.module('getTranslations', ['ngResource']);
 
 getTranslations.service('getTranslations', function($resource, $q, $interpolate, $rootScope) { 
 
+
+/* MOVED TO ROOTSCOPE LEVEL
 	this.translations = {
 		general : [],
 		path : []
 	}
-
+*/
 	this.promises = {
 		general : [],
 		path : []
@@ -26,8 +28,12 @@ getTranslations.service('getTranslations', function($resource, $q, $interpolate,
         	_self.promises.path = $resource(path).get();
         	return _self.promises.path;
         }        	    
-       //$q, $q.all
     };	
+
+    this.addMissingLabel = function(labelToBeAdded){
+        localStorage.setItem(labelToBeAdded, labelToBeAdded);
+        console.log(localStorage.getItem(labelToBeAdded));
+    }
 
 
     this.exposeTranslations = function(){
