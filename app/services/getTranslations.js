@@ -18,6 +18,7 @@ getTranslations.service('getTranslations', function($resource, $q, $interpolate,
 
 	var _self = this;
 
+//Get the requested Resource: either Path or General
     this.getTranslations = function(stateName, language) {
         var path = 'translations/' + language + '/' + stateName + '.json';
 
@@ -30,12 +31,18 @@ getTranslations.service('getTranslations', function($resource, $q, $interpolate,
         }        	    
     };	
 
-    this.addMissingLabel = function(labelToBeAdded){
-        localStorage.setItem(labelToBeAdded, labelToBeAdded);
-        console.log(localStorage.getItem(labelToBeAdded));
+//Check if Label Exists 
+    this.doesExist = function(pathToCheck, labelToCheck){
+    	return $rootScope[pathToCheck].hasOwnProperty(labelToCheck)
     }
 
+//Add Label if not existing
+	this.addMissingLabel = function(labelToBeAdded, isGeneral, selectedLanguage){
+	    localStorage.setItem(labelToBeAdded, labelToBeAdded + " " + isGeneral + " " + selectedLanguage);
+	    console.log(localStorage.getItem(labelToBeAdded));
+	}
 
+//Link translations from service to rootScope level
     this.exposeTranslations = function(){
     	return $q.all([_self.promises.general, _self.promises.path]).then(function(){
     		$rootScope.generalTranslations = _self.promises.general;
@@ -46,11 +53,11 @@ getTranslations.service('getTranslations', function($resource, $q, $interpolate,
 
 });
 
-//NOT USED
-/*
-getTranslations.filter('getCurrentTransl', ['getTranslations', function(getTranslations){
-	return function(label, parameters){
-		return getTranslations.translateCurrent(label,parameters)
-	}
-}])
-*/
+
+
+
+
+
+
+
+

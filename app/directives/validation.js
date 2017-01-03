@@ -51,57 +51,18 @@ appConfig.directive('validationDirective', [
   return {
     restrict: 'A',
     require: 'ngModel',
-       link: function(scope, elem, attrs, ngModel){
-       console.log(attrs)
-       ngModel.$validators.passmatch = function() {
-        return ngModel.$viewValue === attrs.matchPassword;
-       }
+      link: function(scope, elem, attrs, ngModel){
+         //console.log(attrs)
+         ngModel.$validators.passmatch = function() {
+          return ngModel.$viewValue === attrs.matchPassword;
+         }
 
-       attrs.$observe('matchPassword', function (val) {
-        console.log(attrs.matchPassword);
-         ngModel.$setValidity('passmatch', !val || !ngModel.$viewValue || ngModel.$viewValue === val);
-       }); 
+         attrs.$observe('matchPassword', function (val) {
+           ngModel.$setValidity('passmatch', !val || !ngModel.$viewValue || ngModel.$viewValue === val);
+         }); 
 
-
-     //var originalPassword = attr.matchPassword;
-     //var confirmPassword = attr.ngModel;
-
-     //var checker = function() {
-     //  return scope.$parent.formData.password === ngModel.$viewValue;
-     //};
-
-     //scope.$parent.$watch(originalPassword, function() {
-     //  ngModel.$setValidity('passmatch', checker());
-     //  console.log(ngModel.$$parentForm.password.$viewValue);
-     //});
-
-     //scope.$watch(confirmPassword, function(){
-     //  ngModel.$setValidity('passmatch', checker());
-     //});
-
-     //var originalPassword = attr.matchPassword;
-     //var confirmPassword = attr.ngModel;      
-
-     //var checker = function() {
-     //  return ngModel.$$parentForm.password.$viewValue === ngModel.$viewValue;
-     //};
-
-     //
-     //scope.$parent.$watch(originalPassword, function() {
-     //  console.log(ngModel.$$parentForm.password.$$rawModelValue);
-     //  ngModel.$setValidity('passmatch', checker());
-     //  
-     //});
-
-     //scope.$watch(confirmPassword, function(){
-     //  ngModel.$setValidity('passmatch', checker());
-     //});
-
-
-
-
-        }
-    }
+      }
+  }
 }]);
 
 

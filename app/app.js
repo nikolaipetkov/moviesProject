@@ -12,7 +12,6 @@ var myApp = angular.module('myApp', [
 myApp.config(function($stateProvider, $locationProvider, $urlRouterProvider) {
 	$locationProvider.html5Mode(true);
 
-
   var home = {
   name: 'home',
   url: '/home',
@@ -23,17 +22,15 @@ myApp.config(function($stateProvider, $locationProvider, $urlRouterProvider) {
          var generalPromise = getTranslations.getTranslations('general',  $rootScope.selectedLanguage);
          var pathPromise = getTranslations.getTranslations('home',  $rootScope.selectedLanguage);
 
-         //return getTranslations.exposeTranslations();
+        //return getTranslations.exposeTranslations();
 
-         return $q.all([generalPromise.$promise, pathPromise.$promise]).then(function(){
-            $rootScope.generalTranslations = generalPromise;
-            $rootScope.pathTranslations = pathPromise;
-         })       
+        return $q.all([generalPromise.$promise, pathPromise.$promise]).then(function(){
+           $rootScope.generalTranslations = generalPromise;
+           $rootScope.pathTranslations = pathPromise;
+        })       
       }
     }
   }
-
-
 
   var register = {
   name: 'register',
@@ -45,7 +42,7 @@ myApp.config(function($stateProvider, $locationProvider, $urlRouterProvider) {
          var generalPromise = getTranslations.getTranslations('general', $rootScope.selectedLanguage);
          var pathPromise = getTranslations.getTranslations('register', $rootScope.selectedLanguage);
 
-        // return getTranslations.exposeTranslations();
+         //return getTranslations.exposeTranslations();
 
          return $q.all([generalPromise.$promise, pathPromise.$promise]).then(function(){
             $rootScope.generalTranslations = generalPromise;
@@ -54,9 +51,7 @@ myApp.config(function($stateProvider, $locationProvider, $urlRouterProvider) {
       }
     }
   }
-
     
-
   var form = {
     name: 'form',
     url: '/form',
@@ -82,7 +77,6 @@ myApp.config(function($stateProvider, $locationProvider, $urlRouterProvider) {
     templateUrl: 'components/formCity/form-city.html'
   }
   
-
   $urlRouterProvider.otherwise('/home');
 
   $stateProvider.state(home);
@@ -93,46 +87,43 @@ myApp.config(function($stateProvider, $locationProvider, $urlRouterProvider) {
   $stateProvider.state(cityForm);
 });
 
-
-
 myApp.run(function($rootScope, getTranslations, $state, $interpolate, $q){
 
-
-$rootScope.selectedLanguage = "en";
-var stateName = $state.current.name;
-
+  $rootScope.selectedLanguage = "en";
 
   $rootScope.$on('$stateChangeSuccess', function(){
+    console.log('state change success fired');
 
-        console.log('state change success fired')
+    var stateName = $state.current.name;
 
+//Get the individual label after some checks
     $rootScope.getCurrent = function(label, isGeneral, parameters){
       if(parameters == null && isGeneral == 0){
-        if($rootScope.pathTranslations.hasOwnProperty(label)){
+        if(getTranslations.doesExist('pathTranslations', label)){
          return $rootScope.pathTranslations[label]
         } else {
-          getTranslations.addMissingLabel(label);
+          getTranslations.addMissingLabel(label, stateName, $rootScope.selectedLanguage);
         }
 
       } else if(parameters == null && isGeneral == 1) {
-          if($rootScope.generalTranslations.hasOwnProperty(label)){
+          if(getTranslations.doesExist('generalTranslations', label)){
             return $rootScope.generalTranslations[label]
           } else {
-            getTranslations.addMissingLabel(label);
+            getTranslations.addMissingLabel(label, 'general', $rootScope.selectedLanguage);
           }
                 
       } else if(parameters !== null && isGeneral == 0){
-          if($rootScope.pathTranslations.hasOwnProperty(label)){
+          if(getTranslations.doesExist('pathTranslations', label)){
            return $interpolate($rootScope.pathTranslations[label])(parameters);
           } else {
-            getTranslations.addMissingLabel(label);
+            getTranslations.addMissingLabel(label, stateName, $rootScope.selectedLanguage);
           }
         
       } else if(parameters !== null && isGeneral == 1){
-          if($rootScope.generalTranslations.hasOwnProperty(label)){
+          if(getTranslations.doesExist('generalTranslations', label)){
            return $interpolate($rootScope.generalTranslations[label])(parameters);
           } else {
-            getTranslations.addMissingLabel(label);
+            getTranslations.addMissingLabel(label, 'general', $rootScope.selectedLanguage);
           }
         
       }

@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
@@ -10,13 +7,7 @@
   <base href="/">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!--
-  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
-  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
 
-  <link rel="stylesheet" href="app.css">
-  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
-  -->
   <link rel="stylesheet" href="style.css">
   
   <script
@@ -31,78 +22,37 @@
   
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity=" sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   
-  <!--<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"> -->
-
-  
+  <!--<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"> --> 
 </head>
+
 <body>
 
     <div class="container">
-
-
-
-    <a ui-sref="form.name" ui-sref-opts="{reload: true, notify: true}" ui-sref-active="active">Form</a>
-    <a ui-sref="home({reload: true})" ui-sref-active="active" >Home</a>
-    <a ui-sref="register" ui-sref-opts="{reload: 'register'}" ui-sref-active="active">Register</a>
-
-    <div ui-view></div>
-
+      <a ui-sref="form.name" ui-sref-opts="{reload: true, notify: true}" ui-sref-active="active">Form</a>
+      <a ui-sref="home" ui-sref-opts="{reload: true}" ui-sref-active="active" >Home</a>
+      <a ui-sref="register" ui-sref-opts="{reload: true}" ui-sref-active="active">Register</a>
+      <div ui-view></div>
     </div>
   
-  <!--
-  <ul class="menu">
-    <li><a href="#!/view1">view1</a></li>
-    <li><a href="#!/view2">view2</a></li>
-    <li><a href="#!/view3">view3</a></li>
-  </ul> -->
 
-  <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
-
-<!--  <div ng-view></div> -->
-
-  <!-- <div>Angular seed app: v<span app-version></span></div> -->
-
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  -->
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-resource/angular-resource.js"></script>
   <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
   <script type="text/javascript" src="bower_components/angular-ui-validate/dist/validate.js"></script> 
-  <!--<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>-->
-  <!--<script src="bower_components/angular-route/angular-route.js"></script> -->
   <script src="app.js"></script>
   <script src="components/home/homeController.js"></script>
   <script src="components/register/registerController.js"></script>
   <script src="components/form/formController.js"></script>
   <script src="services/getTranslations.js"></script>
   <script src="services/getTrans.js"></script>
-
-  <!--<script src="components/login/tabDirective.js"></script> -->
   
   <!-- config and services include -->
- <script src="app.config.js"></script> 
- <script src="services/register.js"></script>
-
-
-  <!-- <script src="view1/view1.js"></script> -->
-  <!-- <script src="view2/view2.js"></script> -->
-  <!-- <script src="view3/view3.js"></script> -->
-<!-- ng messages include -->
-<!-- <script src="bower_components/angular-messages/angular-messages.js"></script> -->
-
+  <script src="app.config.js"></script> 
+  <script src="services/register.js"></script>
 
   <!-- directive include  <script src="directives/validationMessages.js"></script>-->
   <script src="directives/validation.js"></script>
-  <script src="components/register/regSteps.js"></script>
+  <script src="components/register/regSteps.js"></script> 
 
- 
-
-
- <!-- <script src="components/version/version.js"></script>
-  <script src="components/version/version-directive.js"></script>
-  <script src="components/version/interpolate-filter.js"></script> -->
 </body>
 </html>

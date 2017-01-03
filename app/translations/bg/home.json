@@ -2,5 +2,5 @@
     "COLOR" : "Cvqt",
     "HELLO" : "Zdrasti",
     "HELLO_WORLD" : "Zdravei Svqt!",
-    "FIRST_NAME": "bulgarski name is {{firstName}} and the price is {{price}} :"
+    "FIRST_NAME": "Bulgarski: Ime {{firstName}} cenata e {{price}} :"
 }

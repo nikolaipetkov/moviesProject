@@ -1,34 +1,14 @@
-<!--
-<h4>Select language for translation:</h4>
-<select class="form-control" ng-change="translate()" ng-model="selectedLanguage">
-  <option value="en">English</option>
-  <option value="bg">Bulgarian</option>
-</select>
-
-
-{{translation.HELLO_WORLD}}
-{{translation.COLOR}}
-{{translation}}
-<div class="jumbotron text-center"> Home {{greeting}} </div>
-
-<label>{{translation.PRICE}} </label>
--->
-
-
-<!--
-<h1>{{ 'FIRST_NAME' | getTrans:translationData }}</h1>
-<h1>{{ 'FIRST_NAME' | getTrans:translationData }}</h1>
-<h1>{{ 'LAST_NAME' | getTrans }}</h1>
-
-<h1>{{ 'FIRST_NAME' | getTrans:{firstName: "Nikolai", price: 25} }}</h1>
--->
-
-
 {{test2}}
 
 {{test3}}
 
 {{test4}}
 
-<label> lets try {{test2}} </label>
+<br>
+
+<label> {{test2}} </label>
+
+<button class="btn btn-success btn-xs" ng-click="changeLanguage('bg')"> BG </button>
+<button class="btn btn-warning btn-xs" ng-click="changeLanguage('en')"> EN </button>
+
 
