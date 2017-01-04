@@ -9,47 +9,22 @@ var myApp = angular.module('myApp', [
   'getTranslations'
 ]);
 
-myApp.config(function($stateProvider, $locationProvider, $urlRouterProvider) {
+myApp.config(function($stateProvider, $locationProvider, $urlRouterProvider, $sceProvider) {
 	$locationProvider.html5Mode(true);
+  //$sceProvider.enabled(false);
 
   var home = {
-  name: 'home',
-  url: '/home',
-  templateUrl: 'components/home/home.html',
-  controller: 'HomeController',
-    resolve: {
-      delayedData: function($q, getTranslations, $rootScope){
-         var generalPromise = getTranslations.getTranslations('general',  $rootScope.selectedLanguage);
-         var pathPromise = getTranslations.getTranslations('home',  $rootScope.selectedLanguage);
-
-        //return getTranslations.exposeTranslations();
-
-        return $q.all([generalPromise.$promise, pathPromise.$promise]).then(function(){
-           $rootScope.generalTranslations = generalPromise;
-           $rootScope.pathTranslations = pathPromise;
-        })       
-      }
-    }
+    name: 'home',
+    url: '/home',
+    templateUrl: 'components/home/home.html',
+    controller: 'HomeController',
   }
 
   var register = {
-  name: 'register',
-  url: '/register',
-  templateUrl: 'components/register/register.html',
-  controller: 'RegisterController',
-    resolve: {
-      delayedData: function($q, getTranslations, $rootScope){
-         var generalPromise = getTranslations.getTranslations('general', $rootScope.selectedLanguage);
-         var pathPromise = getTranslations.getTranslations('register', $rootScope.selectedLanguage);
-
-         //return getTranslations.exposeTranslations();
-
-         return $q.all([generalPromise.$promise, pathPromise.$promise]).then(function(){
-            $rootScope.generalTranslations = generalPromise;
-            $rootScope.pathTranslations = pathPromise;
-         })                 
-      }
-    }
+    name: 'register',
+    url: '/register',
+    templateUrl: 'components/register/register.html',
+    controller: 'RegisterController',
   }
     
   var form = {
@@ -91,48 +66,36 @@ myApp.run(function($rootScope, getTranslations, $state, $interpolate, $q){
 
   $rootScope.selectedLanguage = "en";
 
-  $rootScope.$on('$stateChangeSuccess', function(){
-    console.log('state change success fired');
+  
 
-    var stateName = $state.current.name;
+  $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+    console.log('state change start fired');
+    
+    $rootScope.getData = function() {
+      var generalPromise = getTranslations.getTranslations('general', $rootScope.selectedLanguage);
+      var pathPromise = getTranslations.getTranslations(toState.name, $rootScope.selectedLanguage);
 
-//Get the individual label after some checks
-    $rootScope.getCurrent = function(label, isGeneral, parameters){
-      if(parameters == null && isGeneral == 0){
-        if(getTranslations.doesExist('pathTranslations', label)){
-         return $rootScope.pathTranslations[label]
-        } else {
-          getTranslations.addMissingLabel(label, stateName, $rootScope.selectedLanguage);
-        }
+      return $q.all([generalPromise.$promise, pathPromise.$promise]).then(function(){
+        $rootScope.getTranslation = getTranslations.getCurrent;
+      })
+    }();
 
-      } else if(parameters == null && isGeneral == 1) {
-          if(getTranslations.doesExist('generalTranslations', label)){
-            return $rootScope.generalTranslations[label]
-          } else {
-            getTranslations.addMissingLabel(label, 'general', $rootScope.selectedLanguage);
-          }
-                
-      } else if(parameters !== null && isGeneral == 0){
-          if(getTranslations.doesExist('pathTranslations', label)){
-           return $interpolate($rootScope.pathTranslations[label])(parameters);
-          } else {
-            getTranslations.addMissingLabel(label, stateName, $rootScope.selectedLanguage);
-          }
-        
-      } else if(parameters !== null && isGeneral == 1){
-          if(getTranslations.doesExist('generalTranslations', label)){
-           return $interpolate($rootScope.generalTranslations[label])(parameters);
-          } else {
-            getTranslations.addMissingLabel(label, 'general', $rootScope.selectedLanguage);
-          }
-        
-      }
-    }
-            
   })
-
 })
 
+
+myApp.filter('unsafe', function($sce) { return $sce.trustAsHtml;});
+
+
+
+myApp.filter('translate', ['getTranslations', '$rootScope', function(getTranslations, $rootScope){
+  return function(label, parameters) {
+    console.log(label)
+    console.log(parameters)
+    return $rootScope.getTranslation('GREETING')
+    return "label is " + " " + label + " " + "params are:" + " " + parameters;
+  };
+}])
 
 
 

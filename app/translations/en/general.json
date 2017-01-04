@@ -1,5 +1,4 @@
 {  
-    "GREETING" : "Ko staa",
-    "NAME" : "Nikolai from general {{firstName}}",
-    "FIRST_NAME": "First name isasdasdas {{firstName}} and the price is {{price}}"
+    "GREETING" : "English General: Greeting",
+    "NAME" : "Nikolai from general {{firstName}}"
 }

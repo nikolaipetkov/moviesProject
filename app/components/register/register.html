@@ -1,10 +1,10 @@
 <div class="row">
 	<div class="col-sm-8 col-sm-offset-2">
 		<div id="form-container">
+
 		    <div class="page-header text-center">
 		        <h2>Example Form</h2> 
-		        <h1> {{testing}} </h1>
-		        <h1> {{testing2}} </h1>       		             
+		        <h1 ng-bind-html="$root.getTranslation('REGISTER', {parameter: 'customss'}) | unsafe"></h1>     		             
 		    </div>
 		</div>
 	</div>

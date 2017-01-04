@@ -4,13 +4,11 @@ var getTranslations = angular.module('getTranslations', ['ngResource']);
 
 getTranslations.service('getTranslations', function($resource, $q, $interpolate, $rootScope) { 
 
-
-/* MOVED TO ROOTSCOPE LEVEL
 	this.translations = {
 		general : [],
 		path : []
 	}
-*/
+
 	this.promises = {
 		general : [],
 		path : []
@@ -32,26 +30,54 @@ getTranslations.service('getTranslations', function($resource, $q, $interpolate,
     };	
 
 //Check if Label Exists 
-    this.doesExist = function(pathToCheck, labelToCheck){
-    	return $rootScope[pathToCheck].hasOwnProperty(labelToCheck)
+    this.doesExist = function(generalOrPath, labelToCheck){
+    	return _self.promises[generalOrPath].hasOwnProperty(labelToCheck)
     }
 
 //Add Label if not existing
 	this.addMissingLabel = function(labelToBeAdded, isGeneral, selectedLanguage){
-	    localStorage.setItem(labelToBeAdded, labelToBeAdded + " " + isGeneral + " " + selectedLanguage);
-	    console.log(localStorage.getItem(labelToBeAdded));
+	    localStorage.setItem(labelToBeAdded, labelToBeAdded + " " + $rootScope.selectedLanguage);
+	    //console.log(localStorage.getItem(labelToBeAdded));
 	}
 
 //Link translations from service to rootScope level
     this.exposeTranslations = function(){
     	return $q.all([_self.promises.general, _self.promises.path]).then(function(){
-    		$rootScope.generalTranslations = _self.promises.general;
-    		$rootScope.pathTranslations = _self.promises.path;
+    		_self.translations.general = _self.promises.general;
+    		_self.translations.path = _self.promises.path;
     	})
     }
 
+//Get individual label and return it to controller
+//isGeneral argument is not needed anymore?
+    this.getCurrent = function(label, parameters){
+        if(parameters == undefined){
+            if(_self.doesExist('path', label)){
+             return _self.promises.path[label];
+            } else if(_self.doesExist('general', label)){
+              return _self.promises.general[label];
+            } else {
+                return _self.addMissingLabel(label);
+            }
+        } else if(parameters !== undefined){
+            if(_self.doesExist('path', label)){
+                return $interpolate(_self.promises.path[label])(parameters);
+            } else if(_self.doesExist('general', label)){
+                return $interpolate(_self.promises.general[label])(parameters);
+            } else {
+                return _self.addMissingLabel(label);
+            }
+        }
+    }
+
+    this.test = function(){
+        return 'rara'
+    }
 
 });
+
+
+
 
 
 
