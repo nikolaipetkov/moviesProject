@@ -1,16 +1,7 @@
+<h1 ng-bind-html="'FIRST_NAME' | translate : {firstName: 'FILTER PARAM', price: 33}"></h1>
+<h1 ng-bind-html="'GREETING' | translate"></h1>
 
-
-{{test}}
-
-
-<h1 ng-bind-html="$root.getTranslation('FIRST_NAME', {firstName: 'dada', price: 221}) | unsafe"></h1>
-<h1 ng-bind-html="$root.getTranslation('GREETING') | unsafe"></h1>
-<h1 ng-bind-html="$root.getTranslation('GREETING') | unsafe"></h1>
-<h1 ng-bind-html="$root.getTranslation('FIRST_NAME', {firstName: 'dada', price: 221}) | unsafe"></h1>
-<h1 ng-bind-html="$root.getTranslation('notToBeFound') | unsafe"></h1>
- <h1 ng-bind-html="'FIRST_NAME' | translate : {firstName: 'dada', price: 221} | unsafe"></h1> 
- <!-- <h1 ng-bind-html="'notToBeFound' | translate | unsafe "></h1> -->
- <h1 ng-bind-html="'GREETING' | translate | unsafe "></h1>
+<hr>
 <button class="btn btn-success btn-xs" ng-click="changeLanguage('bg')"> BG </button>
 <button class="btn btn-warning btn-xs" ng-click="changeLanguage('en')"> EN </button>
 

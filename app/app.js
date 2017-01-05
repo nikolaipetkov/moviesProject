@@ -66,8 +66,6 @@ myApp.run(function($rootScope, getTranslations, $state, $interpolate, $q){
 
   $rootScope.selectedLanguage = "en";
 
-  
-
   $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
     console.log('state change start fired');
     
@@ -83,18 +81,19 @@ myApp.run(function($rootScope, getTranslations, $state, $interpolate, $q){
   })
 })
 
+myApp.filter('translate', ['getTranslations', '$rootScope', '$sce', function(getTranslations, $rootScope, $sce){
 
-myApp.filter('unsafe', function($sce) { return $sce.trustAsHtml;});
+  function translateFilterFunction(label, parameters){
+    if(angular.isDefined($rootScope.getTranslation)){
+      var item = $rootScope.getTranslation(label, parameters)
+      item = $sce.trustAsHtml(item);
+      return item;
+    }
+  }
 
+  translateFilterFunction.$stateful = true;
 
-
-myApp.filter('translate', ['getTranslations', '$rootScope', function(getTranslations, $rootScope){
-  return function(label, parameters) {
-    console.log(label)
-    console.log(parameters)
-    return $rootScope.getTranslation('GREETING')
-    return "label is " + " " + label + " " + "params are:" + " " + parameters;
-  };
+  return translateFilterFunction;  
 }])
 
 
