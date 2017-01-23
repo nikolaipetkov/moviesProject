@@ -1,7 +1,44 @@
-<h1 ng-bind-html="'FIRST_NAME' | translate : {firstName: 'FILTER PARAM', price: 33}"></h1>
-<h1 ng-bind-html="'GREETING' | translate"></h1>
+<div lighter-directive>
+	<div class="clock"> {{clock | date: 'medium'}}  </div>
+	<h1 ng-bind-html="'FIRST_NAME' | translate : {firstName: 'FILTER PARAM', price: 33}" enter-element leave></h1>
+	<h1 ng-bind-html="'GREETING' | translate"></h1>
 
-<hr>
-<button class="btn btn-success btn-xs" ng-click="changeLanguage('bg')"> BG </button>
-<button class="btn btn-warning btn-xs" ng-click="changeLanguage('en')"> EN </button>
+	<hr>
+	<button class="btn btn-success btn-xs" ng-click="changeLanguage('bg')" enter-element > BG </button>
+	<button class="btn btn-warning btn-xs" ng-click="changeLanguage('en')"> EN </button>
 
+
+
+
+	<label><input type="checkbox" ng-model="checked"/>Disable Button</label>
+	<button ng-disabled="checked">Select me</button>
+	<hr>
+	<h1 ng-hide="isHide"> This should be hidden </h1>
+	<hr>
+	<button ng-click="hideToggle()"> Hide/Show </button>
+	<hr>
+	<select ng-init="selectedName = selectedName || options[0]" ng-model="selectedName" ng-selected="item" ng-options="item for item in options">
+	</select>
+	<hr>
+
+
+	<input type="text" name="user.city0" ng-model="user.city0" ng-class="{orange: checked}"  focus-directive ng-change="onChange()"/>
+
+	<input type="text" name="user.cityAlias" ng-if="!checked" ng-model="user.cityAlias"  />
+
+	<input type="text" name="user.city" ng-model="user.city"  ng-disabled="checked" ng-if="checked" ng-value=" checked ? user.city = user.city0 : user.city = ''  " /> 
+
+	<input type="checkbox" ng-model="checked" ng-click="user.cityAlias = ''"> Checker </input>
+	<hr>
+
+	<div class="panel panel-default">
+		<div class="panel-heading" ng-click="toggleCollapse()">Collapsable Section</div>
+		<div class="panel-body" ng-show="collapsableOption"> Show/Hide Content</div>
+	</div>
+	<hr>
+		<h1 ng-bind-html="'GREETING' | translate" enter-element leave></h1>
+	<hr>
+		<button class="btn btn-success btn-xs" ng-click="count = count + 1"> Increase counter </button>
+		<h2> count: {{count}} </h2>		
+	<hr>
+</div>

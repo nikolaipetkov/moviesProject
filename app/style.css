@@ -18,8 +18,13 @@ body                            { padding-top:20px; }
 #status-buttons a.active span   { background:#00BC8C; }
 
 #registerMessage 				{ background:#A6D785; color: #4F8A10;}
-.errorShower					{ background:#FF9494; color: white; border-radius: 5px; margin-top: 2px;}
+.errorShower					{ background:#FF9494; color: white; border-radius: 5px; margin-top: 2px; width: 15%;}
 
 .navigators 					{/*pointer-events: none;*/}
 
 .active 						{background: orange;}
+
+
+.orange 						{background-color: orange;}
+.dark							{background-color: lightgrey;}
+.clock							{text-align: right;}

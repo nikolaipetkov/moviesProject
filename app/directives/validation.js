@@ -5,14 +5,13 @@ appConfig.directive('validationDirective', [
     return {
      link: function(scope, element, attrs) {
        var config = CONFIGURATIONS[attrs.validationDirective]['rules'];
-
        angular.forEach(config, function(key,value){
           element.attr(value,key);
        });
 
-          element.removeAttr('validation-directive'); // needed because of infinite loop
-          $compile(element)(scope);   // applies all the rules to the element
-      },
+       element.removeAttr('validation-directive'); // needed because of infinite loop
+       $compile(element)(scope);   // applies all the rules to the element
+       },
 
       controller: function($scope, $element, $attrs) {      
       }
@@ -38,7 +37,6 @@ appConfig.directive('validationDirective', [
     link: function(scope, elm, attr, model) { 
       model.$asyncValidators.usernameExists = function() { 
         
-        //console.log(model);
         return $http.get('data/backend.json').then(function(res){+
           $timeout(function(){
             model.$setValidity('usernameExists', !!res.data); 
@@ -52,7 +50,7 @@ appConfig.directive('validationDirective', [
     restrict: 'A',
     require: 'ngModel',
       link: function(scope, elem, attrs, ngModel){
-         //console.log(attrs)
+         //console.log(ngModel)
          ngModel.$validators.passmatch = function() {
           return ngModel.$viewValue === attrs.matchPassword;
          }
@@ -62,8 +60,20 @@ appConfig.directive('validationDirective', [
          }); 
 
       }
+  } // JUST TESTING STUFF BELOW
+}]).directive('enterElement', function(){
+  return function(scope, element){
+    element.bind('mouseenter', function(){
+      element.addClass('active');
+    })
   }
-}]);
-
+}).directive('leave', function(){
+  return function(scope, element){
+    element.bind('mouseleave', function(){
+      element.removeClass('active');
+    })
+  }
+});
+//TESTING STUFF OVER
 
 

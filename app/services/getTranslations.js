@@ -69,11 +69,6 @@ getTranslations.service('getTranslations', function($resource, $q, $interpolate,
             }
         }
     }
-
-    this.test = function(){
-        return 'rara'
-    }
-
 });
 
 

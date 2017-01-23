@@ -11,55 +11,41 @@ var myApp = angular.module('myApp', [
 
 myApp.config(function($stateProvider, $locationProvider, $urlRouterProvider, $sceProvider) {
 	$locationProvider.html5Mode(true);
-  //$sceProvider.enabled(false);
 
-  var home = {
-    name: 'home',
+  $stateProvider.state('home', {
     url: '/home',
     templateUrl: 'components/home/home.html',
-    controller: 'HomeController',
-  }
+    controller: 'HomeController'
+  });
 
-  var register = {
-    name: 'register',
+  $stateProvider.state('register', {
     url: '/register',
     templateUrl: 'components/register/register.html',
-    controller: 'RegisterController',
-  }
-    
-  var form = {
-    name: 'form',
+    controller: 'RegisterController'
+  });
+
+  $stateProvider.state('form', {
     url: '/form',
     templateUrl: 'components/form/form.html',
     controller: 'formController2'
-  }
+  });
 
-  var nameForm = {
-    name: 'form.name',
+  $stateProvider.state('form.name', {
     url: '/formName',
-    templateUrl: 'components/formName/form-name.html'
-  }
+    templateUrl: 'components/formName/form-name.html'   
+  });
 
-  var profileForm = {
-    name: 'form.profile',
+  $stateProvider.state('form.profile', {
     url: '/formProfile',
-    templateUrl: 'components/formProfile/form-profile.html'
-  }
+    templateUrl: 'components/formProfile/form-profile.html'    
+  });
 
-  var cityForm = {
-    name: 'form.city',
+  $stateProvider.state('form.city', {
     url: '/formCity',
-    templateUrl: 'components/formCity/form-city.html'
-  }
-  
-  $urlRouterProvider.otherwise('/home');
+    templateUrl: 'components/formCity/form-city.html'   
+  });
 
-  $stateProvider.state(home);
-  $stateProvider.state(register);
-  $stateProvider.state(form);
-  $stateProvider.state(nameForm);
-  $stateProvider.state(profileForm);
-  $stateProvider.state(cityForm);
+  $urlRouterProvider.otherwise('/home');
 });
 
 myApp.run(function($rootScope, getTranslations, $state, $interpolate, $q){
@@ -67,8 +53,9 @@ myApp.run(function($rootScope, getTranslations, $state, $interpolate, $q){
   $rootScope.selectedLanguage = "en";
 
   $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
-    console.log('state change start fired');
+    console.log('state change success fired');
     
+    (
     $rootScope.getData = function() {
       var generalPromise = getTranslations.getTranslations('general', $rootScope.selectedLanguage);
       var pathPromise = getTranslations.getTranslations(toState.name, $rootScope.selectedLanguage);
@@ -76,7 +63,8 @@ myApp.run(function($rootScope, getTranslations, $state, $interpolate, $q){
       return $q.all([generalPromise.$promise, pathPromise.$promise]).then(function(){
         $rootScope.getTranslation = getTranslations.getCurrent;
       })
-    }();
+    }
+    )();
 
   })
 })

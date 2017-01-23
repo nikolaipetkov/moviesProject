@@ -2,7 +2,7 @@
 
 var appConfig = angular.module('AppConfig', []);
 
-var just = "{{formData.password}}";
+
 appConfig.constant("CONFIGURATIONS", {
   "firstName": {
     "rules" : {
