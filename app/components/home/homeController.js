@@ -54,6 +54,10 @@ angular.module('homeModule', ['getTranslations'])
 
 	$scope.default = 'pls select';
 	$scope.movie = {};
+	$scope.movie.name = 'avatar';
+	$scope.movieToSearch = {};
+	$scope.movieToSearch.name = 'harry';
+
 
 	$scope.getSomeMovie = function(){		
 		getMovie.getCertainMovie($scope.movie.name).$promise.then(function (data){
@@ -62,11 +66,45 @@ angular.module('homeModule', ['getTranslations'])
 			$scope.movie.movieYear = data.Year;
 			$scope.movie.poster = data.Poster;
 			$scope.movie.movieAwards = data.Awards;
+			$scope.movie.movieRating = data.imdbRating;
+		})
+	}
+
+	$scope.searchMovie = function(){
+		getMovie.searchMovie($scope.movieToSearch.name).$promise.then(function(data){
+			$scope.data = data;
+			console.log($scope.data.Search)
 		})
 	}
 
 	$scope.logSome = function(){
-		console.log(movie)
+		console.log($scope.movie)
+	}
+
+	$scope.movies = [
+		{
+			name: 'Avatar',
+			year: '2009'
+		},
+		{
+			name: 'Fight Club',
+			year: '1999'
+		},
+		{
+			name: 'Se7en',
+			year: '1996'
+		}
+	]
+
+	$scope.addSingle = function(){
+		$scope.movies.push({
+			name: $scope.movie.movieTitle,
+			year: $scope.movie.movieYear
+		})
+	}
+
+	$scope.deleteSingle = function(index){
+		$scope.movies.splice(index, 1);
 	}
 
 
