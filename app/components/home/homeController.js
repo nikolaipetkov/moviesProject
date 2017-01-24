@@ -1,5 +1,5 @@
 angular.module('homeModule', ['getTranslations'])
-.controller('HomeController', function($scope, $rootScope, $state, getTranslations, $timeout, $interpolate, $q, $interval){
+.controller('HomeController', function($scope, $rootScope, $state, getTranslations, $timeout, $interpolate, $q, $interval, getMovie){
 	$scope.greeting = "Hello from Home Controller"; 
 
 	$scope.changeLanguage = function(newLanguage) {		
@@ -21,7 +21,7 @@ angular.module('homeModule', ['getTranslations'])
 
 	$scope.hideToggle = function(){
 		if($scope.isHide == false){
-		$scope.isHide = true;
+			$scope.isHide = true;
 		} else {
 			$scope.isHide = false;
 		}
@@ -51,6 +51,23 @@ angular.module('homeModule', ['getTranslations'])
 	}
 	tick();
 	$interval(tick, 1000);
+
+	$scope.default = 'pls select';
+	$scope.movie = {};
+
+	$scope.getSomeMovie = function(){		
+		getMovie.getCertainMovie($scope.movie.name).$promise.then(function (data){
+			$scope.movie.movieData = data;
+			$scope.movie.movieTitle = data.Title;
+			$scope.movie.movieYear = data.Year;
+			$scope.movie.poster = data.Poster;
+			$scope.movie.movieAwards = data.Awards;
+		})
+	}
+
+	$scope.logSome = function(){
+		console.log(movie)
+	}
 
 
 });

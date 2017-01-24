@@ -20,4 +20,28 @@ appConfig.directive('focusDirective', function(){
 			})
 		}
 	}
+}).directive('hoverDirective', function(){
+	return {
+		link: function(scope, element, attrs){
+			element.hover(function(){
+				element.addClass('dark')
+			})
+			element.mouseleave(function(){
+				element.removeClass('dark')
+			})
+		}
+	}
+}).directive('myEnter', function(){
+	return {
+		link: function(scope, element, attrs){
+			element.on('keydown keypress', function(event){
+				if(event.which === 13){
+					scope.$apply(function(){
+						scope.$eval(attrs.myEnter);
+					});
+					event.preventDefault();
+				}
+			})
+		}
+	}
 })

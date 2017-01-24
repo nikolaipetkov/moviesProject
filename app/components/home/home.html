@@ -1,5 +1,5 @@
 <div lighter-directive>
-	<div class="clock"> {{clock | date: 'medium'}}  </div>
+	<div class="clock" hover-directive> {{clock | date: 'medium'}}  </div>
 	<h1 ng-bind-html="'FIRST_NAME' | translate : {firstName: 'FILTER PARAM', price: 33}" enter-element leave></h1>
 	<h1 ng-bind-html="'GREETING' | translate"></h1>
 
@@ -22,13 +22,13 @@
 	<hr>
 
 
-	<input type="text" name="user.city0" ng-model="user.city0" ng-class="{orange: checked}"  focus-directive ng-change="onChange()"/>
+	<input type="text" name="user.city0" ng-model="user.city0" ng-init="default" ng-class="{orange: checked}"  focus-directive ng-change="onChange()"/>
 
 	<input type="text" name="user.cityAlias" ng-if="!checked" ng-model="user.cityAlias"  />
 
-	<input type="text" name="user.city" ng-model="user.city"  ng-disabled="checked" ng-if="checked" ng-value=" checked ? user.city = user.city0 : user.city = ''  " /> 
+	<input type="text" name="user.city" ng-model="user.city"  ng-disabled="checked" ng-if="checked" ng-value=" checked ? user.city = user.city0 || '' : user.city = ''  " /> 
 
-	<input type="checkbox" ng-model="checked" ng-click="user.cityAlias = ''"> Checker </input>
+	<input type="checkbox" ng-model="checked" ng-click="user.cityAlias = ''" ng-disabled="!user.city0"> Checker </input>
 	<hr>
 
 	<div class="panel panel-default">
@@ -39,6 +39,18 @@
 		<h1 ng-bind-html="'GREETING' | translate" enter-element leave></h1>
 	<hr>
 		<button class="btn btn-success btn-xs" ng-click="count = count + 1"> Increase counter </button>
-		<h2> count: {{count}} </h2>		
+		<span class="badge"> count: {{count}} </span>		
+	<hr>
+		<div class='dark' style="height: 260px;">
+			<input type="text" name="movieName" ng-model="movie.name" my-enter="getSomeMovie()" ng-keydown="$event.which === 32 && getSomeMovie()"
+			>
+			<button class="btn btn-success btn-xs" ng-click="getSomeMovie()"> Get a Movie </button>
+			<div> {{movie.movieTitle}} </div>
+			<div> {{movie.movieAwards}} </div>
+			<div> {{movie.movieYear}} </div>
+			<img src="{{movie.poster}}" height="142" width="142" ng-if="poster">
+
+			<pre ng-if="movie.movieData"> {{movie.movieData}} </pre>
+		</div>
 	<hr>
 </div>
