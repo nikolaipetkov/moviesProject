@@ -3,39 +3,54 @@
 	<div class='dark'>
 		<input type="checkbox" ng-model="movieChecker"> Search/Get </input>
 
-		<div class="searchMovie" ng-if="!movieChecker">
-			<label class="labels"> Search For Movie </label>
-			<input type="text" name="movieSearch" ng-model="movieToSearch.name"></input>
-			<button class="btn btn-success btn-xs" ng-click="searchMovie()"> Search </button>
-			<pre ng-if="data">{{data}}</pre>
-			<table id="searchTable" class="table table-inverse">
-				<thead>
-					<tr>
-						<th> Movie Name </th>
-						<th> Movie Year </th>
-						<th> Poster 	</th>
-					</tr>
-				</thead>
-					<tr ng-repeat="item in data.Search">
-						<td> {{item.Title}} </td>
-						<td> {{item.Year}} </td>
-						<td> <img src="{{item.Poster}}" height="142" width="142" ng-if="item.Poster"> </td>
-					</tr>
 
-			</table>
+<!-- SEARCH SECTION WITH TABLE BELOW -->
+	<div class="searchMovie" ng-if="!movieChecker">
+		<h1> Search </h1>
+		<div class="searchMovie">
+			<label class="labels"> Search For Movie </label>
+			<input type="text"  name="movieSearch" ng-model="movieToSearch.name" my-enter="searchMovie(movieToSearch.name, 1)"></input>			
+			<button class="btn btn-success btn-xs" ng-click="searchMovie(movieToSearch.name, 1)"> Search </button>
+			<div ng-if="data.totalResults">Total Results: {{data.totalResults}} </div>
+			<pre ng-if="data">{{data}}</pre>
 		</div>
 
+		<div class="col-md-12 text-center searchTableNavigation">
+			<button class="btn btn-warning btn-xs" ng-click="getPrevious(movieToSearch.name)" ng-if="data.Search"> Previous </button>
+			<button class="btn btn-info btn-xs" ng-click="getNext(movieToSearch.name)" ng-if="data.Search"> Next </button>
+		</div>
+
+		<table id="searchTable" class="table table-inverse" ng-if="data.Search">
+			<thead>
+					<th class="text-center"> Movie Name </th>
+					<th class="text-center"> Movie Year </th>
+					<th class="text-center"> Poster 	</th>
+					<th class="text-center"> Options   	</th>
+			</thead>
+				<tr ng-repeat="item in data.Search">
+					<td> {{item.Title}} </td>
+					<td> {{item.Year}} </td>
+					<td> <img src="{{item.Poster}}" height="142" width="142" ng-if="item.Poster"> </td>
+					<td><button class="btn btn-danger btn-md" ng-click="addSelected($index)"> Add Movie </button></td>
+				</tr>
+		</table>
+	</div>
 
 
 
 
-		<div class="getMovie" ng-if="movieChecker">
+<!-- GET SECTION -->
+	<div ng-if="movieChecker">
+		<h1>Get</h1>
+		<div class="getMovie">
 			<label class="labels">Movie Name</label>
-			<input type="text" name="movieName" ng-model="movie.name" my-enter="getSomeMovie()" ng-keydown="$event.which === 32 && getSomeMovie()"
+			<input type="text" name="movieName" ng-model="movie.name" observe-field="{{movie.name}}" suggestions-directive my-enter="getSomeMovie()"
 			>
 			<button class="btn btn-success btn-xs" ng-click="getSomeMovie()"> Get a Movie </button>
 			<button class="btn btn-danger btn-md" ng-click="addSingle()"> Add Movie </button>
-		<div>
+			<button class="btn btn-info btn-xs" ng-click="reset()"> Reset </button>
+			<div ng-if="data.Search">Total Results: {{data.totalResults}} </div>
+		</div>
 
 		<div class="movie clearfix" ng-if="movie.movieData">
 			<div class="left-col">
@@ -50,7 +65,35 @@
 		</div>
 
 		<pre ng-if="movie.movieData"> {{movie.movieData}} </pre>
+
+		<div class="suggestions" ng-if="data">
+			<div class="list-group">
+				<a href="#" class="list-group-item" ng-repeat="suggestion in data.Search | limitTo: 6" ng-click="addSelected($index)"> <img ng-src="{{suggestion.Poster}}"/> {{suggestion.Title}}  <span style="float:right">Year: {{suggestion.Year}} </span></a>
+			</div>
+		</div>
+	<hr>
+
+		<table id="moviesTable" class="table table-inverse">
+			<thead>
+					<th class="text-center"> Movie Name </th>
+					<th class="text-center"> Movie Year </th>
+					<th class="text-center"> Poster     </th>
+					<th class="text-center"> Options 	</th>
+			</thead>
+				<tr ng-repeat="singleMovie in movies">					
+					<td> {{singleMovie.name}} </td>
+					<td> {{singleMovie.year}} </td>
+					<td><img class="tablePic" ng-src="{{singleMovie.poster}}"/></td>
+					<td><button class="btn btn-danger btn-xs" ng-click="deleteSelected($index)"> Delete</button></td>
+				</tr>
+
+		</table>
 	</div>
+
+	<hr>
+</div>
+
+
 	<!--
 	<h1 ng-bind-html="'FIRST_NAME' | translate : {firstName: 'FILTER PARAM', price: 33}" enter-element leave></h1>
 	<h1 ng-bind-html="'GREETING' | translate"></h1>
@@ -93,25 +136,7 @@
 		<button class="btn btn-success btn-xs" ng-click="count = count + 1"> Increase counter </button>
 		<span class="badge"> count: {{count}} </span>	
 -->	
-	<hr>
-		<table id="moviesTable" class="table table-inverse">
-			<thead>
-				<tr>
-					<th> Movie Name </th>
-					<th> Movie Year </th>
-					<th> Options 	</th>
-				</tr>
-			</thead>
-				<tr ng-repeat="singleMovie in movies">
-					<td> {{singleMovie.name}} </td>
-					<td> {{singleMovie.year}} </td>
-					<td><button class="btn btn-danger btn-xs" ng-click="deleteSingle($index)"> Delete</button></td>
-				</tr>
 
-		</table>
-
-	<hr>
-</div>
 
 
 

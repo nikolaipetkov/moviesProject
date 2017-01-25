@@ -47,10 +47,30 @@ body                            { padding-top:20px; }
 	margin-bottom: 15px;
 }
 
-#moviesTable {
+#moviesTable, #searchTable {
 	table-layout: fixed;
+	text-align: center;
 }
 
 .labels {
 	display: block;
+}
+
+.suggestions {
+	position: relative;
+	margin-bottom: 0px;
+}
+
+a>img {
+	height: 35px;
+	width: 50px;
+}
+
+.tablePic {
+	height: 80px;
+	width: 120px;
+}
+
+.searchTableNavigation {
+	margin-bottom: 10px;
 }
