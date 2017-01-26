@@ -1,4 +1,4 @@
-appConfig.directive('suggestionsDirective', function(){
+myApp.directive('suggestionsDirective', function(){
 	return {
 		require: 'ngModel',
 		link: function(scope, element, attrs, model){
@@ -14,7 +14,7 @@ appConfig.directive('suggestionsDirective', function(){
 
 			attrs.$observe('observeField', function(val){
 				if(val.length > 4){
-					scope.searchMovie(scope.movie.name, 1);
+					scope.searchMovie(scope.movie.name);
 				} else if(val.length < 4){
 					scope.reset();
 				}

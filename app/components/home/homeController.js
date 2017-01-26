@@ -1,5 +1,5 @@
-angular.module('homeModule', ['getTranslations'])
-.controller('HomeController', function($scope, $rootScope, $state, getTranslations, $timeout, $interpolate, $q, $interval, getMovie){
+angular.module('homeModule', [])
+.controller('HomeController', function($scope, $rootScope, $state, $timeout, $interpolate, $q, $interval, getMovie, newMovieService){
 	$scope.greeting = "Hello from Home Controller"; 
 
 //CLOCK
@@ -61,9 +61,9 @@ angular.module('homeModule', ['getTranslations'])
 	$scope.contains = function(array, obj) {
 		var i = array.length;
 		while (i--) {
-		   if (array[i].name === obj) {
-		       return true;
-		   }
+			if (array[i].name === obj) {
+		    	return true;
+		   	}
 		}
 		return false;
 	}
@@ -100,6 +100,21 @@ angular.module('homeModule', ['getTranslations'])
 
 //PREVIOUS PAGE
 	$scope.getPrevious = getMovie.previous;
+
+
+
+
+
+
+
+
+//REFACTORING STARTS FROM HERE
+
+	$scope.$on('movies.update', function(event){
+		$scope.newMovies = newMovieService.newMovies;
+	});
+
+	$scope.newMovies = newMovieService.newMovies;
 
 
 });

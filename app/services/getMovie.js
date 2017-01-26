@@ -2,7 +2,6 @@
 
 angular.module('getMovieService', ['ngResource'])
 	.service('getMovie', function($resource) {
-
 		var pageNumber = 1;
 
 		this.getCertainMovie = function(movieName){
@@ -26,5 +25,5 @@ angular.module('getMovieService', ['ngResource'])
 				pageNumber--;
 				return this.searchMovie(movieName);
 			}
-		}	
+		}
 	});

@@ -1,0 +1,14 @@
+	<table id="searchTable" class="table table-inverse" ng-if="true">
+		<thead>
+				<th class="text-center"> Movie Name </th>
+				<th class="text-center"> Movie Year </th>
+				<th class="text-center"> Poster 	</th>
+				<th class="text-center"> Options   	</th>
+		</thead>
+			<tr ng-repeat="item in movies">
+				<td> {{item.Title}} </td>
+				<td> {{item.Year}} </td>
+				<td> <img src="{{item.Poster}}" height="142" width="142" ng-if="item.Poster"> </td>
+				<td><button class="btn btn-danger btn-md" ng-click="addSelected($index)"> Add Movie </button></td>
+			</tr>
+	</table>

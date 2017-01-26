@@ -1,0 +1,19 @@
+<h1> Last Three Movies </h1>
+	<table id="lastThree" class="table table-sm table-inverse text-center" ng-if="list[0]">
+		<thead>
+			<tr>
+				<th class="text-center" colspan="3">Last Three</th>
+			</tr>
+				<th class="text-center"> Movie Name </th>
+				<th class="text-center"> Movie Year </th>
+				<th class="text-center"> Poster 	</th>
+		</thead>
+			<tr ng-repeat="item in list | limitTo: limiter">
+				<td> {{item.Title}} </td>
+				<td> {{item.Year}} </td>
+				<td> <img src="{{item.Poster}}" height="142" width="142" ng-if="item.Poster"> </td>
+			</tr>
+			<tr>
+				<td colspan="3" ng-click="toggleLimit()"> {{showMoreLessText}} </td>
+			</tr>
+	</table>

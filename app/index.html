@@ -30,9 +30,8 @@
 <body>
 
     <div class="container">
-      <a ui-sref="form.name" ui-sref-active="active">Form</a>
       <a ui-sref="home" ui-sref-active="active" >Home</a>
-      <a ui-sref="register" ui-sref-active="active">Register</a>
+      <a ui-sref="movies" ui-sref-active="active">Movies</a>
       <div ui-view></div>
     </div>
   
@@ -43,21 +42,21 @@
   <script type="text/javascript" src="bower_components/angular-ui-validate/dist/validate.js"></script> 
   <script src="app.js"></script>
   <script src="components/home/homeController.js"></script>
-  <script src="components/register/registerController.js"></script>
-  <script src="components/form/formController.js"></script>
-  <script src="services/getTranslations.js"></script>
-  <script src="services/getTrans.js"></script>
+  <script src="components/movies/MoviesController.js"></script>
   
   <!-- config and services include -->
-  <script src="app.config.js"></script> 
-  <script src="services/register.js"></script>
   <script src="services/getMovie.js"></script>
+  <script src="services/newMovieService.js"></script>
+  <script src="services/moviesProvider.js"></script>
 
   <!-- directive include  <script src="directives/validationMessages.js"></script>-->
-  <script src="directives/validation.js"></script>
-  <script src="directives/focusDirective.js"></script>
+  <script src="directives/addNewMovieDirective.js"></script>
   <script src="directives/suggestions.js"></script>
-  <script src="components/register/regSteps.js"></script> 
+  <script src="directives/searchDirective.js"></script>
+  <script src="directives/tableDirective.js"></script>
+  <script src="directives/lastThreeDirective.js"></script>
+  <script src="directives/myListDirective.js"></script>
+  <script src="directives/modalDirective.js"></script>
 
 </body>
 </html>
