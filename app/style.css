@@ -78,3 +78,11 @@ a>img {
 td {
 	cursor: pointer;
 }
+
+.btn {
+	margin-top: 10px;
+}
+
+nav input {
+    color: black;
+}

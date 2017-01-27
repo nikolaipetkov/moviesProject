@@ -1,14 +1,23 @@
-	<table id="searchTable" class="table table-inverse" ng-if="true">
+<div ng-if="movies">
+	<h1 class="text-center"> Search Table </h1>
+	<table id="searchTable" class="table table-inverse">
 		<thead>
+			<tr>
+				<th class="text-center" colspan="4">Search List </th>
+			</tr>
 				<th class="text-center"> Movie Name </th>
 				<th class="text-center"> Movie Year </th>
 				<th class="text-center"> Poster 	</th>
 				<th class="text-center"> Options   	</th>
 		</thead>
 			<tr ng-repeat="item in movies">
-				<td> {{item.Title}} </td>
-				<td> {{item.Year}} </td>
-				<td> <img src="{{item.Poster}}" height="142" width="142" ng-if="item.Poster"> </td>
-				<td><button class="btn btn-danger btn-md" ng-click="addSelected($index)"> Add Movie </button></td>
+				<td ng-click="addSelected($index)"> {{item.Title}} </td>
+				<td ng-click="addSelected($index)"> {{item.Year}} </td>
+				<td ng-click="addSelected($index)"> <img src="{{item.Poster}}" height="142" width="142" ng-if="item.Poster"/>  </td>
+				<td>
+					<button class="btn btn-danger btn-md" ng-click="addSelected($index)"> Add Movie </button>
+					<button class="btn btn-primary" ng-click="showModal(); getMovie(item.Title)">View More</button>
+				</td>
 			</tr>
 	</table>
+</div>

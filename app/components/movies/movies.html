@@ -1,8 +1,43 @@
-<div class="jumbotron text-center"> {{message}} </div> 
+ <div class="containter-fluid">
+
+    <nav class="navbar navbar-inverse bg-inverse justify-content-between">
+        <a class="navbar-brand"><span class="glyphicon glyphicon-globe" id="globe"></span></a>
+        <form class="form-inline">
+            <search-directive movies="moviesList"> </search-directive>
+        </form>
+    </nav>
+
+ 	<div class="row">
+ 		<div class="col-sm-3">
+ 			<last-three-directive movies="moviesList" list="myMovies"> </last-three-directive>         
+            <my-list-directive list="myMovies"> </my-list-directive>            
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-8">
+            <table-directive movies="moviesList" list="myMovies" show-modal="showModal1 = true" movie-data="movieData"> </table-directive>
+        </div>
+    </div>
+
+    <div class="row"> 
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-1"></div>        
+        <div class="col-sm-8">
+		</div>
+	</div>
+</div>	
 
 
-<modal-directive> </modal-directive>
-<last-three-directive movies="moviesList" list="myMovies"> </last-three-directive>
-<my-list-directive list="myMovies"> </my-list-directive>	
-<search-directive movies="moviesList"> </search-directive>
-<table-directive movies="moviesList" list="myMovies"> </table-directive>
+    <modal visible="showModal1">
+        <modal-header title="{{movieData.Title}}"></modal-header>
+        <modal-body>
+            <div class="row">
+            	<div class="col-sm-8"> <img ng-src="{{movieData.Poster}}"/> </div>         	
+            	<div class="col-sm-4"> {{movieData.Plot}} </div>
+            </div>
+        </modal-body>
+        <modal-footer>
+        	<h2>Year: {{movieData.Year}}</h2>
+            <button class="btn btn-primary"  ng-click="addFromModal(); hide(1)">Save</button>
+        </modal-footer>
+    </modal>

@@ -16,8 +16,6 @@ myApp.directive('searchDirective', ['moviesProvider', function(moviesProvider){
 				}
 			};
 		},
-		link: function(scope, element, attrs){
-
-		}
+		link: function(scope, element, attrs){}
 	}
 }])

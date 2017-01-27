@@ -30,8 +30,7 @@
 <body>
 
     <div class="container">
-      <a ui-sref="home" ui-sref-active="active" >Home</a>
-      <a ui-sref="movies" ui-sref-active="active">Movies</a>
+     <!-- <a ui-sref="movies" ui-sref-active="active">Movies</a> -->
       <div ui-view></div>
     </div>
   
@@ -41,17 +40,12 @@
   <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
   <script type="text/javascript" src="bower_components/angular-ui-validate/dist/validate.js"></script> 
   <script src="app.js"></script>
-  <script src="components/home/homeController.js"></script>
   <script src="components/movies/MoviesController.js"></script>
   
   <!-- config and services include -->
-  <script src="services/getMovie.js"></script>
-  <script src="services/newMovieService.js"></script>
   <script src="services/moviesProvider.js"></script>
 
   <!-- directive include  <script src="directives/validationMessages.js"></script>-->
-  <script src="directives/addNewMovieDirective.js"></script>
-  <script src="directives/suggestions.js"></script>
   <script src="directives/searchDirective.js"></script>
   <script src="directives/tableDirective.js"></script>
   <script src="directives/lastThreeDirective.js"></script>
