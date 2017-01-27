@@ -4,7 +4,11 @@ myApp.directive('modal', function(){
             restrict: 'E',
             transclude: true,
             replace:true,
-            scope:{visible:'=', onSown:'&', onHide:'&'},   
+            scope:{
+                visible:'=', 
+                onSown:'&', 
+                onHide:'&'
+            },   
             link:function postLink(scope, element, attrs){
                 
                 $(element).modal({
@@ -53,7 +57,9 @@ myApp.directive('modal', function(){
         template:'<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title">{{title}}</h4></div>',
         replace:true,
         restrict: 'E',
-        scope: {title:'@'}
+        scope: {
+            title:'@'
+        }
     };
 }).directive('modalBody', function(){
     return {

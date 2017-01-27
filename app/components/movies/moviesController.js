@@ -30,6 +30,7 @@ angular.module('moviesModule', [])
 	}
 
 //MODAL STUFF
+
 //CURRENT MODAL MOVIE DATA GOES HERE
 	$scope.movieData = [];
 

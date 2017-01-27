@@ -16,7 +16,7 @@
 				<td ng-click="addSelected($index)"> <img src="{{item.Poster}}" height="142" width="142" ng-if="item.Poster"/>  </td>
 				<td>
 					<button class="btn btn-danger btn-md" ng-click="addSelected($index)"> Add Movie </button>
-					<button class="btn btn-primary" ng-click="showModal(); getMovie(item.Title)">View More</button>
+					<button class="btn btn-primary" ng-click="getMovie(item.Title); showModal()">View More</button>
 				</td>
 			</tr>
 	</table>

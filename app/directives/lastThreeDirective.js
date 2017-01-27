@@ -8,7 +8,7 @@ myApp.directive('lastThreeDirective', ['moviesProvider', function(moviesProvider
 		restrict: 'E',
 		templateUrl: 'directives/lastThreeDirectiveTemplate.html',
 		controller: function($scope, $element, $attrs){
-			//ng-repeat LimitTo limiter and Text based on that
+		//ng-repeat LimitTo limiter and Text based on that
 			$scope.limiter = 3;
 			$scope.showMoreLessText = 'Show More';
 			$scope.toggleLimit = function(){
