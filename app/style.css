@@ -1,5 +1,4 @@
-body                            { padding-top:20px; }
-
+body                            { padding-top:20px; background-color: #616d71 !important;}
 
 #form-container .page-header   { background:#2f2f2f; color: white; margin:0; padding:30px; 
     border-top-left-radius:5px; border-top-right-radius:5px; }
