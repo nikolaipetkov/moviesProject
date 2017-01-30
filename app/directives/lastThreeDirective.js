@@ -7,20 +7,24 @@ myApp.directive('lastThreeDirective', ['moviesProvider', function(moviesProvider
 		},
 		restrict: 'E',
 		templateUrl: 'directives/lastThreeDirectiveTemplate.html',
-		controller: function($scope, $element, $attrs){
+		controller: function($scope, $element, $attrs){},
+		link: function(scope, element, attrs){
 		//ng-repeat LimitTo limiter and Text based on that
-			$scope.limiter = 3;
-			$scope.showMoreLessText = 'Show More';
-			$scope.toggleLimit = function(){
-				if($scope.limiter == 3){
-					$scope.showMoreLessText = 'Show Less';
-					$scope.limiter = 10;
+			scope.limiter = 3;
+			scope.showMoreLessText = 'Show More';
+			scope.toggleLimit = function(){
+				if(scope.limiter == 3){
+					scope.showMoreLessText = 'Show Less';
+					scope.limiter = 10;
 				} else {
-					$scope.limiter = 3;
-					$scope.showMoreLessText = 'Show More';
+					scope.limiter = 3;
+					scope.showMoreLessText = 'Show More';
 				}
 			}
-		},
-		link: function(scope, element, attrs){}
+
+			scope.deleteSelected = function(index){
+				scope.list.splice(index, 1);
+			}
+		}
 	}
 }])

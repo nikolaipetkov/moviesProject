@@ -1,6 +1,5 @@
 var myApp = angular.module('myApp', [
   'ui.router',
-  'ui.validate',
   'moviesModule',
   'ngResource'
 ]);

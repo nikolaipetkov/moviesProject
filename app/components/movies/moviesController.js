@@ -7,6 +7,7 @@ angular.module('moviesModule', [])
 //ADDED MOVIES GO HERE
 	$scope.myMovies = [];
 
+
 //Modal uses controller functions (reason: code structure)
 	$scope.addFromModal = function(){
 		if(!$scope.contains($scope.myMovies, $scope.movieData.Title)){
@@ -27,10 +28,10 @@ angular.module('moviesModule', [])
 		   	}
 		}
 		return false;
-	}
+	}	
+
 
 //MODAL STUFF
-
 //CURRENT MODAL MOVIE DATA GOES HERE
 	$scope.movieData = [];
 

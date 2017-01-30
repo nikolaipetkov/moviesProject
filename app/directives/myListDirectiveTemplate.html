@@ -1,16 +1,20 @@
-<h1 class="text-center" ng-if="list[0]">My List </h1>
-	<table id="myList" class="table table-sm table-inverse text-center" ng-if="list[0]">
-		<thead>
-			<tr>
-				<th class="text-center" colspan="3">My List </th>
-			</tr>
-				<th class="text-center"> Movie Name </th>
-				<th class="text-center"> Movie Year </th>
-				<th class="text-center"> Poster 	</th>
-		</thead>
-			<tr ng-repeat="item in list">
-				<td> {{item.Title}} </td>
-				<td> {{item.Year}} </td>
-				<td> <img src="{{item.Poster}}" height="142" width="142" ng-if="item.Poster"> </td>
-			</tr>
-	</table>
+<div ng-if="list[0]">
+	<h1 class="text-center">My List </h1>
+		<table id="myList" class="table table-sm table-inverse text-center">
+			<thead>
+				<tr>
+					<th class="text-center" colspan="4">My List </th>
+				</tr>
+					<th class="text-center"> Movie Name </th>
+					<th class="text-center"> Movie Year </th>
+					<th class="text-center"> Poster 	</th>
+					<th class="text-center"> Options 	</th>
+			</thead>
+				<tr ng-repeat="item in list">
+					<td> {{item.Title}} </td>
+					<td> {{item.Year}} </td>
+					<td> <img src="{{item.Poster}}" height="142" width="142" ng-if="item.Poster"> </td>
+					<td><button class="btn btn-warning" ng-click="deleteSelected($index)">Delete</button></td>
+				</tr>
+		</table>
+</div>

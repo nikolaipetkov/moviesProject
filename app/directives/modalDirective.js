@@ -5,9 +5,7 @@ myApp.directive('modal', function(){
             transclude: true,
             replace:true,
             scope:{
-                visible:'=', 
-                onSown:'&', 
-                onHide:'&'
+                visible:'='
             },   
             link:function postLink(scope, element, attrs){
                 
@@ -32,11 +30,6 @@ myApp.directive('modal', function(){
                   });
                 });
                 
-                $(element).on('shown.bs.modal', function(){
-                  scope.$apply(function(){
-                      scope.onSown({});
-                  });
-                });
 
                 $(element).on('hidden.bs.modal', function(){
                   scope.$apply(function(){
@@ -44,11 +37,6 @@ myApp.directive('modal', function(){
                   });
                 });
                 
-                $(element).on('hidden.bs.modal', function(){
-                  scope.$apply(function(){
-                      scope.onHide({});
-                  });
-                });
             }
         };
     }
