@@ -1,6 +1,6 @@
 <div ng-if="movies">
 	<h1 class="text-center"> Search Table </h1>
-	<table id="searchTable" class="table table-inverse">
+	<table id="searchTable" class="table table-sm table-inverse text-center">
 		<thead>
 			<tr>
 				<th class="text-center" colspan="4">Search List </th>
@@ -15,7 +15,7 @@
 				<td ng-click="getMovie(item.Title); showModal()"> {{item.Year}} </td>
 				<td ng-click="getMovie(item.Title); showModal()"> <img src="{{item.Poster}}" height="142" width="142" ng-if="item.Poster"/>  </td>
 				<td>
-					<button class="btn btn-danger btn-md" ng-click="addSelected($index)"> Add Movie </button>
+					<button class="btn btn-danger" ng-click="addSelected($index)"> Add Movie </button>
 					<button class="btn btn-primary" ng-click="getMovie(item.Title); showModal()">View More</button>
 				</td>
 			</tr>

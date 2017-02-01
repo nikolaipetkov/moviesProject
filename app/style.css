@@ -46,10 +46,6 @@ body                            { padding-top:20px; background-color: #616d71 !i
 	margin-bottom: 15px;
 }
 
-#moviesTable, #searchTable {
-	table-layout: fixed;
-	text-align: center;
-}
 
 .labels {
 	display: block;
@@ -60,10 +56,6 @@ body                            { padding-top:20px; background-color: #616d71 !i
 	margin-bottom: 0px;
 }
 
-a>img {
-	height: 35px;
-	width: 50px;
-}
 
 .tablePic {
 	height: 80px;
