@@ -77,3 +77,65 @@ td {
 nav input {
     color: black;
 }
+
+#playground {
+	border-color: green;
+	border-width: 5px;
+	position: relative;
+	width: 100%;
+	height: auto;
+	margin-bottom: 10px;
+}
+
+#test1 {
+	position: fixed;
+	bottom: 50%;
+	right: 50%;
+	clear: both;
+	display: block;
+	z-index: 1;
+}
+
+#test2 {
+	background-color: green;
+	float: left;
+	clear: both;
+	display: block;
+}
+
+@keyframes animation {
+  from {
+    letter-spacing: 52px;
+  }
+  to {
+    letter-spacing: 0;
+  }
+}
+
+.animated {
+  animation: animation 3s ease infinite;
+  animation-iteration-count: 1;
+
+   background: url(http://i.giphy.com/fsULJFFGv8X3G.gif);
+  background-size: cover;
+  background-position: center;
+  
+  -webkit-background-clip: text;
+  color: transparent;  background
+  
+  width: 300px;
+  height: 100px;
+  box-sizing: border-box;
+  font-size: 58px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 100px;
+  flex-shrink: 0;
+}
+
+h2 {
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+
